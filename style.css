@@ -72,11 +72,11 @@ body {
     filter: brightness(1.1);
 }
 
-.baston-logo {
+.baston.png {
     max-height: 50px;
 }
 
-.total-logo {
+.total.jpg {
     max-height: 50px;
 }
 

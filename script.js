@@ -1,4 +1,4 @@
-// Funções de conversão e formatação (mantidas)
+// Funções de conversão e formatação (Mantidas)
 function currencyToNumber(value) {
     if (!value) return 0;
     return parseFloat(value.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
@@ -43,9 +43,9 @@ function formatPercentageInput(input) {
     input.value = formatted + '%';
 }
 
-// Função para calcular resultados
+// Função para calcular resultados (Lógica corrigida para D2)
 function calculateResults() {
-    // === Primeira tabela (Cálculos Base) ===
+    // === Primeira tabela ===
     const base1 = currencyToNumber(document.getElementById('base1').value);
     const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
     const st1Percent = percentageToNumber(document.getElementById('st1').value);
@@ -53,9 +53,9 @@ function calculateResults() {
     // NOVO CÁLCULO 1: D2 (result_base_mirror) = B2
     document.getElementById('result_base_mirror').textContent = formatCurrency(base1);
     
-    // CÁLCULO 2: IPI (result_ipi1) = C3 + (C3 * B4) -> Base 1 + (Base 1 * IPI 1)
+    // CÁLCULO 2: IPI (result_ipi1) = D2 + (D2 * B3) -> base1 + (base1 * IPI 1)
     const resultIpi1 = base1 + (base1 * ipi1Percent / 100);
-    // CÁLCULO 3: ST (result_st1) = C4 + (C4 * B5) -> resultIpi1 + (resultIpi1 * ST 1)
+    // CÁLCULO 3: ST (result_st1) = D3 + (D3 * B4) -> resultIpi1 + (resultIpi1 * ST 1)
     const resultSt1 = resultIpi1 + (resultIpi1 * st1Percent / 100);
     
     document.getElementById('result_ipi1').textContent = formatCurrency(resultIpi1);
@@ -66,54 +66,54 @@ function calculateResults() {
     const ipi2Percent = percentageToNumber(document.getElementById('ipi2').value);
     const st2Percent = percentageToNumber(document.getElementById('st2').value);
     
-    // CÁLCULO 4: IPI (result_ipi2) = C6 + (C6 * B7) -> Novo Base + (Novo Base * IPI 2)
+    // CÁLCULO 4: IPI (result_ipi2) = B5 + (B5 * B6) -> Novo Base + (Novo Base * IPI 2)
     const resultIpi2 = novoBase + (novoBase * ipi2Percent / 100);
-    // CÁLCULO 5: ST (result_st2) = C7 + (C7 * B8) -> resultIpi2 + (resultIpi2 * ST 2)
+    // CÁLCULO 5: ST (result_st2) = D6 + (D6 * B7) -> resultIpi2 + (resultIpi2 * ST 2)
     const resultSt2 = resultIpi2 + (resultIpi2 * st2Percent / 100);
     
     document.getElementById('result_ipi2').textContent = formatCurrency(resultIpi2);
     document.getElementById('result_st2').textContent = formatCurrency(resultSt2);
     
-    // CÁLCULO 6: Valor para rebaixa (result_rebaixa) = C5 - C8 -> resultSt1 - resultSt2
+    // CÁLCULO 6: Valor para rebaixa (result_rebaixa) = D4 - D7 -> resultSt1 - resultSt2
     const valorRebaixa = resultSt1 - resultSt2;
     document.getElementById('result_rebaixa').textContent = formatCurrency(valorRebaixa);
     
-    // === Segunda tabela (Cálculos Incentivo, Outros e MC) ===
+    // === Segunda tabela ===
     const base2 = currencyToNumber(document.getElementById('base2').value);
     const ipi3Percent = percentageToNumber(document.getElementById('ipi3').value);
     const st3Percent = percentageToNumber(document.getElementById('st3').value);
     
-    // CÁLCULO 7: IPI (result_ipi3) = C11 + (C11 * B12) -> Base 2 + (Base 2 * IPI 3)
+    // CÁLCULO 7: IPI (result_ipi3) = B9 + (B9 * B10) -> Base 2 + (Base 2 * IPI 3)
     const resultIpi3 = base2 + (base2 * ipi3Percent / 100);
     
-    // CÁLCULO 8: ST (result_st3) = C12 + (C12 * B13) -> resultIpi3 + (resultIpi3 * ST 3)
+    // CÁLCULO 8: ST (result_st3) = D10 + (D10 * B11) -> resultIpi3 + (resultIpi3 * ST 3)
     const resultSt3 = resultIpi3 + (resultIpi3 * st3Percent / 100);
     
     document.getElementById('result_ipi3').textContent = formatCurrency(resultIpi3);
     document.getElementById('result_st3').textContent = formatCurrency(resultSt3);
     
-    // CÁLCULO 9: Incentivo (result_incentivo) = C13 - B14 -> resultSt3 - Incentivo (Input B14)
+    // CÁLCULO 9: Incentivo (result_incentivo) = D11 - B12 -> resultSt3 - Incentivo (Input B12)
     const incentivo = currencyToNumber(document.getElementById('incentivo').value);
     const resultIncentivo = resultSt3 - incentivo;
     
     document.getElementById('result_incentivo').textContent = formatCurrency(resultIncentivo);
     
-    // CÁLCULO 10: Outros (Total) (result_outros) = C14 + (C14 * B15) -> resultIncentivo + (resultIncentivo * Outros %)
+    // CÁLCULO 10: Outros (Total) (result_outros) = D12 + (D12 * B13) -> resultIncentivo + (resultIncentivo * Outros %)
     const outrosPercent = percentageToNumber(document.getElementById('outros').value);
     const resultOutros = resultIncentivo + (resultIncentivo * outrosPercent / 100);
     
     document.getElementById('result_outros').textContent = formatCurrency(resultOutros);
     
-    // CÁLCULO 11: MC (result_mc) = C15 + (C15 * B16) -> resultOutros + (resultOutros * MC %)
+    // CÁLCULO 11: MC (result_mc) = D13 + (D13 * B14) -> resultOutros + (resultOutros * MC %)
     const mcPercent = percentageToNumber(document.getElementById('mc').value);
     const resultMc = resultOutros + (resultOutros * mcPercent / 100);
     
     document.getElementById('result_mc').textContent = formatCurrency(resultMc);
 }
 
-// Event listeners para inputs de moeda e percentual
+// REMOÇÃO DO CÁLCULO AUTOMÁTICO e MANTENÇÃO APENAS DA FORMATAÇÃO NO 'blur'
 document.querySelectorAll('.currency-input, .percentage-input').forEach(input => {
-    // Apenas formata o valor ao sair do campo (blur), SEM CALCULAR AUTOMATICAMENTE
+    // Apenas formata o valor ao sair do campo (blur)
     input.addEventListener('blur', () => {
         if (input.classList.contains('currency-input')) {
             formatCurrencyInput(input);
@@ -121,7 +121,6 @@ document.querySelectorAll('.currency-input, .percentage-input').forEach(input =>
             formatPercentageInput(input);
         }
     });
-    
     // Evento 'input' e cálculo automático removidos
 });
 
@@ -146,7 +145,7 @@ document.getElementById('resetBtn').addEventListener('click', () => {
         document.querySelectorAll('.result-value').forEach(result => {
             result.textContent = 'R$ 0,00';
         });
-        calculateResults();
+        calculateResults(); // Recalcula para atualizar os valores zerados
     }
 });
 
@@ -156,7 +155,7 @@ document.getElementById('printBtn').addEventListener('click', () => {
 
 // Inicializa os cálculos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
-    // Aplica a formatação inicial para garantir que todos os inputs tenham '%' ou 'R$'
+    // Aplica a formatação inicial
     document.querySelectorAll('.currency-input').forEach(formatCurrencyInput);
     document.querySelectorAll('.percentage-input').forEach(formatPercentageInput);
     calculateResults();

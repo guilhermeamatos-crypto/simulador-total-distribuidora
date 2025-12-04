@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Simulador Total Distribuidora</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Simulador Total Distribuidora</h1>
+
+<div class="container">
+
+<h2>Tabela Superior</h2>
+<label>$ Base:</label>
+<input id="base1" type="text" value="R$ 4,52"><br>
+
+<label>IPI (%):</label>
+<input id="ipi1" type="text" value="4,55%"><br>
+
+<label>ST (%):</label>
+<input id="st1" type="text" value="6,58%"><br>
+
+<h3>Novo $ Base</h3>
+<input id="novoBase" type="text" value="R$ 4,29"><br>
+
+<label>IPI (%):</label>
+<input id="ipi2" type="text" value="4,55%"><br>
+
+<label>ST (%):</label>
+<input id="st2" type="text" value="6,58%"><br>
+
+<button onclick="calcular()">Calcular</button>
+
+<h3>Resultados</h3>
+<p>IPI 1: <span id="ipi1_res"></span></p>
+<p>ST 1: <span id="st1_res"></span></p>
+<p>IPI 2: <span id="ipi2_res"></span></p>
+<p>ST 2: <span id="st2_res"></span></p>
+<p><b>Valor para Rebaixa:</b> <span id="valorRebaixa"></span></p>
+
+<hr>
+
+<h2>Tabela Inferior</h2>
+
+<label>$ Base:</label>
+<input id="base3" type="text"><br>
+
+<label>IPI (%):</label>
+<input id="ipi3" type="text" value="4,55%"><br>
+
+<label>ST (%):</label>
+<input id="st3" type="text" value="5,12%"><br>
+
+<label>Incentivo:</label>
+<input id="incentivo" type="text" value="R$ 0,10"><br>
+
+<label>Outros (Total %):</label>
+<input id="outros" type="text" value="13%"><br>
+
+<label>MC (%):</label>
+<input id="mc" type="text" value="11%"><br>
+
+<h3>Resultados</h3>
+<p>IPI 3: <span id="ipi3_res"></span></p>
+<p>ST 3: <span id="st3_res"></span></p>
+<p>Outros: <span id="outros_res"></span></p>
+<p><b>MC:</b> <span id="mc_res"></span></p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

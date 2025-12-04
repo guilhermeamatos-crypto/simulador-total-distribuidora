@@ -1,54 +1,181 @@
-
-function moedaParaNumero(v){
-  return Number(v.replace("R$","").replace(".","").replace(",",".").trim());
-}
-function pctParaNumero(v){
-  return Number(v.replace("%","").replace(",",".").trim())/100;
-}
-function numeroParaMoeda(v){
-  return v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+// Função para converter string de moeda para número
+function currencyToNumber(value) {
+    if (!value) return 0;
+    // Remove "R$", espaços e converte vírgula em ponto
+    return parseFloat(value.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
 }
 
-function calcular(){
-  let base1 = moedaParaNumero(document.getElementById('base1').value);
-  let ipiPct1 = pctParaNumero(document.getElementById('ipi1').value);
-  let stPct1 = pctParaNumero(document.getElementById('st1').value);
-
-  let ipi1 = base1 + (base1*ipiPct1);
-  let st1 = ipi1 + (ipi1*stPct1);
-
-  document.getElementById('ipi1_res').textContent = numeroParaMoeda(ipi1);
-  document.getElementById('st1_res').textContent = numeroParaMoeda(st1);
-
-  let novoBase = moedaParaNumero(document.getElementById('novoBase').value);
-  let ipiPct2 = pctParaNumero(document.getElementById('ipi2').value);
-  let stPct2 = pctParaNumero(document.getElementById('st2').value);
-
-  let ipi2 = novoBase + (novoBase*ipiPct2);
-  let st2 = ipi2 + (ipi2*stPct2);
-
-  document.getElementById('ipi2_res').textContent = numeroParaMoeda(ipi2);
-  document.getElementById('st2_res').textContent = numeroParaMoeda(st2);
-
-  document.getElementById('valorRebaixa').textContent = numeroParaMoeda(st1 - st2);
-
-  let base3 = novoBase;
-  document.getElementById('base3').value = numeroParaMoeda(base3);
-
-  let ipiPct3 = pctParaNumero(document.getElementById('ipi3').value);
-  let stPct3 = pctParaNumero(document.getElementById('st3').value);
-  let incentivoInput = moedaParaNumero(document.getElementById('incentivo').value);
-  let outrosPct = pctParaNumero(document.getElementById('outros').value);
-  let mcPct = pctParaNumero(document.getElementById('mc').value);
-
-  let ipi3 = base3 + (base3*ipiPct3);
-  let st3 = ipi3 + (ipi3*stPct3);
-  let incentivo = st3 - incentivoInput;
-  let outros = incentivo + (incentivo*outrosPct);
-  let mc = outros + (outros*mcPct);
-
-  document.getElementById('ipi3_res').textContent = numeroParaMoeda(ipi3);
-  document.getElementById('st3_res').textContent = numeroParaMoeda(st3);
-  document.getElementById('outros_res').textContent = numeroParaMoeda(outros);
-  document.getElementById('mc_res').textContent = numeroParaMoeda(mc);
+// Função para converter string de percentual para número
+function percentageToNumber(value) {
+    if (!value) return 0;
+    // Remove "%" e espaços
+    return parseFloat(value.replace(/%\s?/g, '').replace(',', '.'));
 }
+
+// Função para formatar número como moeda
+function formatCurrency(value) {
+    const num = parseFloat(value);
+    if (isNaN(num)) return 'R$ 0,00';
+    return 'R$ ' + num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+// Função para formatar número como percentual
+function formatPercentage(value) {
+    const num = parseFloat(value);
+    if (isNaN(num)) return '0,00%';
+    return num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+}
+
+// Função para limpar e formatar input de moeda
+function formatCurrencyInput(input) {
+    let value = input.value.trim();
+    
+    if (!value) return;
+    
+    // Remove caracteres não numéricos (exceto vírgula e ponto)
+    value = value.replace(/[^\d,.-]/g, '');
+    
+    // Se não houver vírgula ou ponto, adiciona como centavos
+    if (!value.includes(',') && !value.includes('.')) {
+        if (value.length <= 2) {
+            value = '0,' + value.padStart(2, '0');
+        } else {
+            value = value.slice(0, -2) + ',' + value.slice(-2);
+        }
+    }
+    
+    // Converte ponto em vírgula se necessário
+    value = value.replace('.', ',');
+    
+    // Formata com separador de milhares
+    const [intPart, decPart] = value.split(',');
+    const formatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + (decPart || '00').slice(0, 2);
+    
+    input.value = formatted;
+}
+
+// Função para limpar e formatar input de percentual
+function formatPercentageInput(input) {
+    let value = input.value.trim();
+    
+    if (!value) return;
+    
+    // Remove caracteres não numéricos (exceto vírgula e ponto)
+    value = value.replace(/[^\d,.-]/g, '');
+    
+    // Converte ponto em vírgula se necessário
+    value = value.replace('.', ',');
+    
+    // Limita a 2 casas decimais
+    const [intPart, decPart] = value.split(',');
+    const formatted = (intPart || '0') + ',' + (decPart || '00').slice(0, 2);
+    
+    input.value = formatted;
+}
+
+// Função para calcular resultados
+function calculateResults() {
+    // Primeira tabela
+    const base1 = currencyToNumber(document.getElementById('base1').value);
+    const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
+    const st1Percent = percentageToNumber(document.getElementById('st1').value);
+    
+    // Cálculos: IPI = C3 + (C3 * B4), ST = C4 + (C4 * B5)
+    const resultIpi1 = base1 + (base1 * ipi1Percent / 100);
+    const resultSt1 = resultIpi1 + (resultIpi1 * st1Percent / 100);
+    
+    document.getElementById('result_ipi1').textContent = formatCurrency(resultIpi1);
+    document.getElementById('result_st1').textContent = formatCurrency(resultSt1);
+    
+    // Segunda parte da primeira tabela (com novo base)
+    const novoBase = currencyToNumber(document.getElementById('novo_base').value);
+    const ipi2Percent = percentageToNumber(document.getElementById('ipi2').value);
+    const st2Percent = percentageToNumber(document.getElementById('st2').value);
+    
+    // Cálculos: IPI = C6 + (C6 * B7), ST = C7 + (C7 * B8)
+    const resultIpi2 = novoBase + (novoBase * ipi2Percent / 100);
+    const resultSt2 = resultIpi2 + (resultIpi2 * st2Percent / 100);
+    
+    document.getElementById('result_ipi2').textContent = formatCurrency(resultIpi2);
+    document.getElementById('result_st2').textContent = formatCurrency(resultSt2);
+    
+    // Valor para rebaixa = C5 - C8 (resultSt1 - resultSt2)
+    const valorRebaixa = resultSt1 - resultSt2;
+    document.getElementById('result_rebaixa').textContent = formatCurrency(valorRebaixa);
+    
+    // Segunda tabela
+    const base2 = currencyToNumber(document.getElementById('base2').value);
+    const ipi3Percent = percentageToNumber(document.getElementById('ipi3').value);
+    const st3Percent = percentageToNumber(document.getElementById('st3').value);
+    
+    // Cálculos: IPI = C6 + (C6 * B12), ST = C12 + (C12 * B13)
+    const resultIpi3 = base2 + (base2 * ipi3Percent / 100);
+    const resultSt3 = resultIpi3 + (resultIpi3 * st3Percent / 100);
+    
+    document.getElementById('result_ipi3').textContent = formatCurrency(resultIpi3);
+    document.getElementById('result_st3').textContent = formatCurrency(resultSt3);
+    
+    // Incentivo = C13 - B14 (resultSt3 - incentivo)
+    const incentivo = currencyToNumber(document.getElementById('incentivo').value);
+    const resultIncentivo = resultSt3 - incentivo;
+    
+    document.getElementById('result_incentivo').textContent = formatCurrency(resultIncentivo);
+    
+    // Outros (Total) = C14 + (C14 * B15) (resultIncentivo + (resultIncentivo * outrosPercent / 100))
+    const outrosPercent = percentageToNumber(document.getElementById('outros').value);
+    const resultOutros = resultIncentivo + (resultIncentivo * outrosPercent / 100);
+    
+    document.getElementById('result_outros').textContent = formatCurrency(resultOutros);
+    
+    // MC = C15 + (C15 * B16) (resultOutros + (resultOutros * mcPercent / 100))
+    const mcPercent = percentageToNumber(document.getElementById('mc').value);
+    const resultMc = resultOutros + (resultOutros * mcPercent / 100);
+    
+    document.getElementById('result_mc').textContent = formatCurrency(resultMc);
+}
+
+// Event listeners para inputs de moeda
+document.querySelectorAll('.currency-input').forEach(input => {
+    input.addEventListener('blur', () => {
+        formatCurrencyInput(input);
+        calculateResults();
+    });
+    
+    input.addEventListener('input', () => {
+        calculateResults();
+    });
+});
+
+// Event listeners para inputs de percentual
+document.querySelectorAll('.percentage-input').forEach(input => {
+    input.addEventListener('blur', () => {
+        formatPercentageInput(input);
+        calculateResults();
+    });
+    
+    input.addEventListener('input', () => {
+        calculateResults();
+    });
+});
+
+// Botão de reset
+document.getElementById('resetBtn').addEventListener('click', () => {
+    if (confirm('Tem certeza que deseja limpar todos os valores?')) {
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.value = '';
+        });
+        document.querySelectorAll('.result-value').forEach(result => {
+            result.textContent = 'R$ 0,00';
+        });
+    }
+});
+
+// Botão de imprimir
+document.getElementById('printBtn').addEventListener('click', () => {
+    window.print();
+});
+
+// Inicializa os cálculos ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    calculateResults();
+});

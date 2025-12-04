@@ -1,97 +1,191 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Simulador Total Distribuidora</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Total Distribuidora</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Header com logos -->
+        <header class="header">
+            <div class="logo-section">
+                <img src="baston-logo.png" alt="BASTON Logo" class="logo baston-logo">
+                <img src="total-logo.jpg" alt="TOTAL Logo" class="logo total-logo">
+            </div>
+            <h1>Simulador Total Distribuidora</h1>
+        </header>
 
-<div class="header">
-    <img src="baston.png" class="logo">
-    <img src="total.png" class="logo">
-</div>
+        <!-- Conteúdo principal -->
+        <main class="main-content">
+            <!-- Primeira Tabela: Cálculo de Base e Novo Base -->
+            <section class="calculator-section">
+                <div class="table-wrapper">
+                    <table class="calculator-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">$ Base</th>
+                                <th colspan="2">Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="label">$ Base</td>
+                                <td class="input-cell">
+                                    <input type="text" id="base1" class="currency-input" placeholder="R$ 0,00" value="4,52">
+                                </td>
+                                <td class="label">IPI</td>
+                                <td class="result-cell">
+                                    <span id="result_ipi1" class="result-value">R$ 4,73</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">IPI</td>
+                                <td class="input-cell">
+                                    <input type="text" id="ipi1" class="percentage-input" placeholder="0,00%" value="4,55%">
+                                </td>
+                                <td class="label">ST</td>
+                                <td class="result-cell">
+                                    <span id="result_st1" class="result-value">R$ 5,04</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">ST</td>
+                                <td class="input-cell">
+                                    <input type="text" id="st1" class="percentage-input" placeholder="0,00%" value="6,58%">
+                                </td>
+                                <td class="label"></td>
+                                <td class="result-cell"></td>
+                            </tr>
+                            <tr class="highlight-row novo-base">
+                                <td class="label">Novo $ Base</td>
+                                <td class="input-cell">
+                                    <input type="text" id="novo_base" class="currency-input" placeholder="R$ 0,00" value="4,29">
+                                </td>
+                                <td class="label"></td>
+                                <td class="result-cell"></td>
+                            </tr>
+                            <tr>
+                                <td class="label">IPI</td>
+                                <td class="input-cell">
+                                    <input type="text" id="ipi2" class="percentage-input" placeholder="0,00%" value="4,55%">
+                                </td>
+                                <td class="label">IPI</td>
+                                <td class="result-cell">
+                                    <span id="result_ipi2" class="result-value">R$ 4,49</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">ST</td>
+                                <td class="input-cell">
+                                    <input type="text" id="st2" class="percentage-input" placeholder="0,00%" value="5,12%">
+                                </td>
+                                <td class="label">ST</td>
+                                <td class="result-cell">
+                                    <span id="result_st2" class="result-value">R$ 4,71</span>
+                                </td>
+                            </tr>
+                            <tr class="highlight-row valor-rebaixa">
+                                <td class="label">Valor para Rebaixa</td>
+                                <td class="input-cell"></td>
+                                <td class="label"></td>
+                                <td class="result-cell">
+                                    <span id="result_rebaixa" class="result-value">R$ 0,32</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-<h1 class="titulo">ADESIVO CHEMICOLOR INSTANT...</h1>
+            <!-- Segunda Tabela: Cálculo de Incentivo, Outros e MC -->
+            <section class="calculator-section">
+                <div class="table-wrapper">
+                    <table class="calculator-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">$ Base</th>
+                                <th colspan="2">Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="label">$ Base</td>
+                                <td class="input-cell">
+                                    <input type="text" id="base2" class="currency-input" placeholder="R$ 0,00" value="4,29">
+                                </td>
+                                <td class="label"></td>
+                                <td class="result-cell"></td>
+                            </tr>
+                            <tr>
+                                <td class="label">IPI</td>
+                                <td class="input-cell">
+                                    <input type="text" id="ipi3" class="percentage-input" placeholder="0,00%" value="4,55%">
+                                </td>
+                                <td class="label">IPI</td>
+                                <td class="result-cell">
+                                    <span id="result_ipi3" class="result-value">R$ 4,49</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">ST</td>
+                                <td class="input-cell">
+                                    <input type="text" id="st3" class="percentage-input" placeholder="0,00%" value="5,12%">
+                                </td>
+                                <td class="label">ST</td>
+                                <td class="result-cell">
+                                    <span id="result_st3" class="result-value">R$ 4,71</span>
+                                </td>
+                            </tr>
+                            <tr class="highlight-row incentivo">
+                                <td class="label">Incentivo</td>
+                                <td class="input-cell">
+                                    <input type="text" id="incentivo" class="currency-input" placeholder="R$ 0,00" value="0,10">
+                                </td>
+                                <td class="label"></td>
+                                <td class="result-cell">
+                                    <span id="result_incentivo" class="result-value">R$ 4,61</span>
+                                </td>
+                            </tr>
+                            <tr class="highlight-row outros">
+                                <td class="label">Outros (Total)</td>
+                                <td class="input-cell">
+                                    <input type="text" id="outros" class="percentage-input" placeholder="0,00%" value="13,00%">
+                                </td>
+                                <td class="label"></td>
+                                <td class="result-cell">
+                                    <span id="result_outros" class="result-value">R$ 5,21</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">MC</td>
+                                <td class="input-cell">
+                                    <input type="text" id="mc" class="percentage-input" placeholder="0,00%" value="11,00%">
+                                </td>
+                                <td class="label">MC</td>
+                                <td class="result-cell">
+                                    <span id="result_mc" class="result-value">R$ 5,79</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-<div class="card">
-    <h2>PREÇO TABELA</h2>
-    <div class="valor" id="precoTabela">R$ 0,00</div>
+            <!-- Botões de ação -->
+            <div class="action-buttons">
+                <button id="resetBtn" class="btn btn-reset">Limpar</button>
+                <button id="printBtn" class="btn btn-print">Imprimir</button>
+            </div>
+        </main>
 
-    <div class="linha">
-        <div class="label">IPI</div>
-        <input id="ipiPct" placeholder="Ex: 3273,95%">
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TOTAL Distribuidora - Simulador de Preços. Todos os direitos reservados.</p>
+        </footer>
     </div>
 
-    <div class="linha">
-        <div class="label">VALOR DO IPI</div>
-        <div class="resultado" id="valorIpi">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">TOTAL C/ IPI</div>
-        <div class="resultado" id="totalIpi">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">ST</div>
-        <input id="stPct" placeholder="Ex: 4209,58%">
-    </div>
-
-    <div class="linha">
-        <div class="label">VALOR DO ST</div>
-        <div class="resultado" id="valorSt">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">PREÇO FLAT</div>
-        <div class="resultado" id="precoFlat">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">INCENTIVO (UN)</div>
-        <input id="incentivo" placeholder="R$ 0,00">
-    </div>
-
-    <div class="linha">
-        <div class="label">TOTAL C/ INCENTIVO</div>
-        <div class="resultado" id="totalIncentivo">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">OUTROS CUSTOS (%)</div>
-        <input id="outrosPct" placeholder="13%">
-    </div>
-
-    <div class="linha">
-        <div class="label">VALOR OUT CUSTOS</div>
-        <div class="resultado" id="valorOutros">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">TOTAL C/ OUTROS</div>
-        <div class="resultado" id="totalOutros">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label">MC (%)</div>
-        <input id="mcPct" placeholder="11%">
-    </div>
-
-    <div class="linha">
-        <div class="label">VALOR DA MC</div>
-        <div class="resultado" id="valorMc">R$ 0,00</div>
-    </div>
-
-    <div class="linha">
-        <div class="label destaque">PREÇO FINAL</div>
-        <div class="resultado destaqueFinal" id="precoFinal">R$ 0,00</div>
-    </div>
-
-    <button onclick="calcular()">CALCULAR</button>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

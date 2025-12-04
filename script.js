@@ -10,39 +10,45 @@ function numeroParaMoeda(v){
 }
 
 function calcular(){
-    let precoTabela = moedaParaNumero("R$ 6170,27");
-    document.getElementById("precoTabela").textContent = numeroParaMoeda(precoTabela);
+  let base1 = moedaParaNumero(document.getElementById('base1').value);
+  let ipiPct1 = pctParaNumero(document.getElementById('ipi1').value);
+  let stPct1 = pctParaNumero(document.getElementById('st1').value);
 
-    let ipi = pctParaNumero(document.getElementById("ipiPct").value);
-    let valorIpi = precoTabela * ipi;
-    let totalIpi = precoTabela + valorIpi;
+  let ipi1 = base1 + (base1*ipiPct1);
+  let st1 = ipi1 + (ipi1*stPct1);
 
-    document.getElementById("valorIpi").textContent = numeroParaMoeda(valorIpi);
-    document.getElementById("totalIpi").textContent = numeroParaMoeda(totalIpi);
+  document.getElementById('ipi1_res').textContent = numeroParaMoeda(ipi1);
+  document.getElementById('st1_res').textContent = numeroParaMoeda(st1);
 
-    let st = pctParaNumero(document.getElementById("stPct").value);
-    let valorSt = totalIpi * st;
-    let precoFlat = totalIpi + valorSt;
+  let novoBase = moedaParaNumero(document.getElementById('novoBase').value);
+  let ipiPct2 = pctParaNumero(document.getElementById('ipi2').value);
+  let stPct2 = pctParaNumero(document.getElementById('st2').value);
 
-    document.getElementById("valorSt").textContent = numeroParaMoeda(valorSt);
-    document.getElementById("precoFlat").textContent = numeroParaMoeda(precoFlat);
+  let ipi2 = novoBase + (novoBase*ipiPct2);
+  let st2 = ipi2 + (ipi2*stPct2);
 
-    let incentivo = moedaParaNumero(document.getElementById("incentivo").value);
-    let totalIncentivo = precoFlat - incentivo;
+  document.getElementById('ipi2_res').textContent = numeroParaMoeda(ipi2);
+  document.getElementById('st2_res').textContent = numeroParaMoeda(st2);
 
-    document.getElementById("totalIncentivo").textContent = numeroParaMoeda(totalIncentivo);
+  document.getElementById('valorRebaixa').textContent = numeroParaMoeda(st1 - st2);
 
-    let outros = pctParaNumero(document.getElementById("outrosPct").value);
-    let valorOutros = totalIncentivo * outros;
-    let totalOutros = totalIncentivo + valorOutros;
+  let base3 = novoBase;
+  document.getElementById('base3').value = numeroParaMoeda(base3);
 
-    document.getElementById("valorOutros").textContent = numeroParaMoeda(valorOutros);
-    document.getElementById("totalOutros").textContent = numeroParaMoeda(totalOutros);
+  let ipiPct3 = pctParaNumero(document.getElementById('ipi3').value);
+  let stPct3 = pctParaNumero(document.getElementById('st3').value);
+  let incentivoInput = moedaParaNumero(document.getElementById('incentivo').value);
+  let outrosPct = pctParaNumero(document.getElementById('outros').value);
+  let mcPct = pctParaNumero(document.getElementById('mc').value);
 
-    let mc = pctParaNumero(document.getElementById("mcPct").value);
-    let valorMc = totalOutros * mc;
-    let precoFinal = totalOutros + valorMc;
+  let ipi3 = base3 + (base3*ipiPct3);
+  let st3 = ipi3 + (ipi3*stPct3);
+  let incentivo = st3 - incentivoInput;
+  let outros = incentivo + (incentivo*outrosPct);
+  let mc = outros + (outros*mcPct);
 
-    document.getElementById("valorMc").textContent = numeroParaMoeda(valorMc);
-    document.getElementById("precoFinal").textContent = numeroParaMoeda(precoFinal);
+  document.getElementById('ipi3_res').textContent = numeroParaMoeda(ipi3);
+  document.getElementById('st3_res').textContent = numeroParaMoeda(st3);
+  document.getElementById('outros_res').textContent = numeroParaMoeda(outros);
+  document.getElementById('mc_res').textContent = numeroParaMoeda(mc);
 }

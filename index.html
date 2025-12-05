@@ -11,7 +11,7 @@
         <header class="header">
             <div class="logo-section">
                 <img src="baston.png" alt="baston Logo" class="logo baston-logo">
-                <img src="total.png" alt="total Logo" class="logo total-logo">
+                <img src="Total.jpg" alt="total Logo" class="logo total-logo">
             </div>
             <h1>Simulador Total Distribuidora</h1>
         </header>
@@ -113,9 +113,9 @@
                                 <td class="input-cell">
                                     <input type="text" id="base2" class="currency-input" placeholder="R$ 0,00" value="4,29">
                                 </td>
-                                <td class="label">IPI</td>
+                                <td class="label"></td>
                                 <td class="result-cell">
-                                    <span id="result_ipi3" class="result-value">R$ 4,49</span>
+                                    <span id="result_base2_mirror" class="result-value">R$ 4,29</span>
                                 </td>
                             </tr>
                             <tr>
@@ -123,9 +123,9 @@
                                 <td class="input-cell">
                                     <input type="text" id="ipi3" class="percentage-input" placeholder="0,00%" value="4,55%">
                                 </td>
-                                <td class="label">ST</td>
+                                <td class="label">IPI</td>
                                 <td class="result-cell">
-                                    <span id="result_st3" class="result-value">R$ 4,71</span>
+                                    <span id="result_ipi3" class="result-value">R$ 4,49</span>
                                 </td>
                             </tr>
                             <tr>
@@ -133,9 +133,9 @@
                                 <td class="input-cell">
                                     <input type="text" id="st3" class="percentage-input" placeholder="0,00%" value="5,12%">
                                 </td>
-                                <td class="label">Incentivo</td>
+                                <td class="label">ST</td>
                                 <td class="result-cell">
-                                    <span id="result_incentivo" class="result-value">R$ 4,61</span>
+                                    <span id="result_st3" class="result-value">R$ 4,71</span>
                                 </td>
                             </tr>
                             <tr class="highlight-row incentivo">
@@ -143,9 +143,9 @@
                                 <td class="input-cell">
                                     <input type="text" id="incentivo" class="currency-input" placeholder="R$ 0,00" value="0,10">
                                 </td>
-                                <td class="label">Outros (Total)</td>
+                                <td class="label">Incentivo</td>
                                 <td class="result-cell">
-                                    <span id="result_outros" class="result-value">R$ 5,21</span>
+                                    <span id="result_incentivo" class="result-value">R$ 4,61</span>
                                 </td>
                             </tr>
                             <tr class="highlight-row outros">
@@ -153,9 +153,9 @@
                                 <td class="input-cell">
                                     <input type="text" id="outros" class="percentage-input" placeholder="0,00%" value="13,00%">
                                 </td>
-                                <td class="label">MC</td>
+                                <td class="label">Outros (Total)</td>
                                 <td class="result-cell">
-                                    <span id="result_mc" class="result-value">R$ 5,79</span>
+                                    <span id="result_outros" class="result-value">R$ 5,21</span>
                                 </td>
                             </tr>
                             <tr>
@@ -163,8 +163,10 @@
                                 <td class="input-cell">
                                     <input type="text" id="mc" class="percentage-input" placeholder="0,00%" value="11,00%">
                                 </td>
-                                <td class="label"></td>
-                                <td class="result-cell"></td>
+                                <td class="label">MC</td>
+                                <td class="result-cell">
+                                    <span id="result_mc" class="result-value">R$ 5,79</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

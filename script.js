@@ -50,7 +50,7 @@ function calculateResults() {
     const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
     const st1Percent = percentageToNumber(document.getElementById('st1').value);
     
-    // NOVO CÁLCULO 1: D2 (result_base_mirror) = B2
+    // CÁLCULO 1: D2 (result_base_mirror) = B2
     const result_base_mirror = base1;
     document.getElementById('result_base_mirror').textContent = formatCurrency(result_base_mirror);
     
@@ -83,6 +83,10 @@ function calculateResults() {
     const base2 = currencyToNumber(document.getElementById('base2').value);
     const ipi3Percent = percentageToNumber(document.getElementById('ipi3').value);
     const st3Percent = percentageToNumber(document.getElementById('st3').value);
+    
+    // NOVO CÁLCULO: Espelhamento do $ Base (base2)
+    const result_base2_mirror = base2;
+    document.getElementById('result_base2_mirror').textContent = formatCurrency(result_base2_mirror);
     
     // CÁLCULO 7: IPI (result_ipi3) = B9 + (B9 * B10)
     const resultIpi3 = base2 + (base2 * ipi3Percent / 100);

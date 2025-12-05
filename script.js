@@ -1,5 +1,4 @@
-[script.js]
-// Funções de conversão, formatação (Mantidas)
+// Funções de conversão e formatação (Mantidas)
 function currencyToNumber(value) {
     if (!value) return 0;
     return parseFloat(value.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
@@ -41,10 +40,10 @@ function formatPercentageInput(input) {
     value = value.replace('.', ',');
     const [intPart, decPart] = value.split(',');
     const formatted = (intPart || '0') + ',' + (decPart || '00').slice(0, 2);
-    input.value = formatted + '%'; // Adiciona o '%'
+    input.value = formatted + '%'; 
 }
 
-// Função para calcular resultados (Lógica corrigida para D2)
+// Função para calcular resultados
 function calculateResults() {
     // === Primeira tabela ===
     const base1 = currencyToNumber(document.getElementById('base1').value);
@@ -52,7 +51,8 @@ function calculateResults() {
     const st1Percent = percentageToNumber(document.getElementById('st1').value);
     
     // NOVO CÁLCULO 1: D2 (result_base_mirror) = B2
-    document.getElementById('result_base_mirror').textContent = formatCurrency(base1);
+    const result_base_mirror = base1;
+    document.getElementById('result_base_mirror').textContent = formatCurrency(result_base_mirror);
     
     // CÁLCULO 2: IPI (result_ipi1) = D2 + (D2 * B3)
     const resultIpi1 = base1 + (base1 * ipi1Percent / 100);
@@ -112,18 +112,18 @@ function calculateResults() {
     document.getElementById('result_mc').textContent = formatCurrency(resultMc);
 }
 
-// Event listeners para inputs de moeda e percentual
+// REMOÇÃO DO CÁLCULO AUTOMÁTICO - Apenas Formatação no 'blur'
 document.querySelectorAll('.currency-input, .percentage-input').forEach(input => {
-    // Apenas formata o valor ao sair do campo (blur), SEM CALCULAR AUTOMATICAMENTE
+    // Apenas formata o valor ao sair do campo (blur), SEM CALCULAR
     input.addEventListener('blur', () => {
         if (input.classList.contains('currency-input')) {
             formatCurrencyInput(input);
         } else if (input.classList.contains('percentage-input')) {
-            formatPercentageInput(input);
+            formatPercentageInput(input); 
         }
     });
     
-    // Evento 'input' e cálculo automático removidos
+    // Evento 'input' e cálculo automático foram removidos
 });
 
 // Event listener para o botão de calcular

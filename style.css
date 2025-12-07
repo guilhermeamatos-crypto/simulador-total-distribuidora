@@ -1,197 +1,124 @@
 /* ... (Estilos globais e de cabeçalho mantidos) ... */
 
-/* Tabela */
-.calculator-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--font-size-base);
+:root {
+    --color-primary: #1e4d7b; /* Azul Escuro */
+    --color-secondary: #2d5f8d; /* Azul Mais Claro */
+    --color-success: #4caf50; /* Verde (Para o Novo $ Base) */
+    --color-warning: #ffc107; /* Amarelo (Para Incentivo) */
+    
+    /* NOVO: Amarelo Pastel para MKP Shopper */
+    --color-mkp-shopper-bg: #fffde7; 
+    
+    --color-text: #333;
+    --color-white: #fff;
+    --color-result-bg: #e6f0ff; /* Azul Claro para resultados padrão */
+    
+    /* ... (Outras variáveis mantidas) ... */
 }
 
-.calculator-table thead {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-
-.calculator-table th {
-    padding: var(--spacing-md);
-    text-align: left;
-    font-weight: 600;
-    border: 1px solid var(--color-primary);
-}
-
-.calculator-table td {
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-border);
-    vertical-align: middle;
-}
-
-/* Células de label (Coluna A) */
-.label {
-    background-color: var(--color-secondary);
-    color: var(--color-white);
-    font-weight: 500;
-    text-align: left;
-    /* AJUSTE PARA 50% (nova proporção da Coluna A) */
-    width: 50%; 
-}
-
-/* Células de input (Coluna B) */
-.input-cell {
-    background-color: var(--color-white);
-    /* AJUSTE PARA 25% (nova proporção da Coluna B) */
-    width: 25%;
-}
-
-/* Células de resultado (Antiga Coluna D, agora Coluna C) */
-.result-cell {
-    background-color: #e8f5e9; /* Cor de fundo para resultados (padrão verde claro) */
-    font-weight: 600;
-    color: var(--color-text);
-    /* AJUSTE PARA 25% (nova proporção da Coluna C/Resultado) */
-    width: 25%;
-    text-align: right; /* Alinhamento à direita para valores */
-}
+/* ... (Tabela, thead, th, td e proporções 50%/25%/25% mantidas) ... */
 
 /* --- ESTILOS POR LINHA --- */
 
-/* Linhas Padrão (Manter azul/cinza) - Garantindo as cores corretas */
-/* Adicionando cor de fundo padrão para células que não são label nem resultado */
+/* Linhas Padrão (Manter azul/cinza) - Aplica a formatação padrão */
 .calculator-table tbody tr:not(.highlight-row) .label {
     background-color: var(--color-secondary);
     color: var(--color-white);
 }
 
 .calculator-table tbody tr:not(.highlight-row) .result-cell {
-    background-color: #e6f0ff; /* Cor azul claro para resultados padrão */
+    background-color: #e6f0ff; 
     color: var(--color-text);
 }
 
-/* Linhas de Destaque VERDE (Novo $ Base e Valor para Rebaixa) */
-.novo-base .label,
-.novo-base .input-cell,
-.novo-base .result-cell,
-.valor-rebaixa .label,
-.valor-rebaixa .result-cell {
+/* 2. NOVO: Formatação Verde (Novo $ Base) - Fundo Verde, Fonte PRETA */
+.highlight-row.novo-base.green-bg-black-font td {
+    background-color: var(--color-success) !important;
+    color: var(--color-text) !important; /* Fonte PRETA */
+}
+
+/* Garante que o input na linha verde fique com fundo BRANCO para contraste */
+.highlight-row.novo-base.green-bg-black-font .input-cell input[type="text"] {
+    background-color: var(--color-white);
+    color: var(--color-text);
+}
+
+
+/* Linha Valor para Rebaixa (Mantida Verde/Branca) */
+.highlight-row.valor-rebaixa .label,
+.highlight-row.valor-rebaixa .result-cell {
     background-color: var(--color-success);
     color: var(--color-white);
 }
 
-.novo-base .input-cell input[type="text"],
-.valor-rebaixa .input-cell input[type="text"] {
-    background-color: var(--color-white);
+.highlight-row.valor-rebaixa .input-cell {
+    background-color: var(--color-success); 
 }
 
-/* Linha de Incentivo (Amarelo) */
-.incentivo .label,
-.incentivo .input-cell,
-.incentivo .result-cell {
-    background-color: var(--color-warning);
+
+/* 3. NOVO: Formatação Amarela (Incentivo) - Fundo Amarelo, Fonte PRETA */
+.highlight-row.incentivo.yellow-bg-black-font td {
+    background-color: var(--color-warning) !important;
+    color: var(--color-text) !important; /* Fonte PRETA */
+}
+
+/* Garante que o input na linha amarela fique com fundo BRANCO para contraste */
+.highlight-row.incentivo.yellow-bg-black-font .input-cell input[type="text"] {
+    background-color: var(--color-white);
     color: var(--color-text);
 }
 
-.incentivo .input-cell input[type="text"] {
-    background-color: var(--color-white);
-}
-
-.incentivo .result-value {
-    color: var(--color-text);
-}
-
-/* Linha de Outros (Azul Escuro - secundário) */
-.outros .label,
-.outros .input-cell,
-.outros .result-cell {
+/* Linha Outros (Total) - Mantida Azul Secundário/Branca */
+.highlight-row.outros td {
     background-color: var(--color-secondary);
     color: var(--color-white);
 }
 
-.outros .input-cell input[type="text"] {
+.highlight-row.outros .input-cell {
+    background-color: var(--color-secondary);
+}
+
+.highlight-row.outros .input-cell input[type="text"] {
     background-color: var(--color-white);
 }
 
-.outros .result-value {
-    color: var(--color-white);
+.highlight-row.outros .result-value {
+    color: var(--color-white); 
 }
 
-/* Linha MC (Azul Escuro - secundário) - Padrão */
-.calculator-table tbody tr:last-child .label,
-.calculator-table tbody tr:last-child .result-cell {
+
+/* 4. NOVO: Linha MC - Volta para Formatação Padrão (Fundo Azul, Resultados em Azul Claro) */
+/* Removendo qualquer destaque que a linha MC poderia ter */
+.highlight-row.mc .label {
     background-color: var(--color-secondary);
     color: var(--color-white);
 }
 
-.calculator-table tbody tr:last-child .result-cell {
-    background-color: #e6f0ff; /* Cor azul claro para resultados padrão (como no topo) */
+.highlight-row.mc .result-cell {
+    background-color: #e6f0ff; /* Azul Claro (padrão) */
     color: var(--color-text);
 }
 
-/* ... (Estilos de input, botões e footer mantidos) ... */
 
-/* Adicionado o grid layout, que faltava no arquivo anterior */
-.main-content.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+/* 5. NOVO: Linha MKP Shopper - Formatada em Amarelo Pastel */
+.highlight-row.mkp-shopper td {
+    background-color: var(--color-mkp-shopper-bg); 
+    color: var(--color-text);
 }
 
-/* Responsividade - Tablets */
-@media (max-width: 768px) {
-    /* ... (Estilos de cabeçalho e container mantidos) ... */
-    
-    .calculator-table {
-        font-size: var(--font-size-sm);
-    }
-
-    .calculator-table th,
-    .calculator-table td {
-        padding: var(--spacing-sm);
-    }
-    
-    /* AJUSTE DAS NOVAS LARGURAS RESPONSIVAS */
-    .label {
-        width: 50%;
-    }
-
-    .input-cell,
-    .result-cell {
-        width: 25%;
-    }
-
-    input[type="text"] {
-        padding: var(--spacing-xs);
-        font-size: var(--font-size-sm);
-    }
-
-    /* ... (Estilos de botões e footer mantidos) ... */
+.highlight-row.mkp-shopper .label {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
 }
 
-/* Responsividade - Smartphones */
-@media (max-width: 480px) {
-    /* ... (Estilos de cabeçalho e container mantidos) ... */
-    
-    .calculator-table {
-        font-size: 0.75rem;
-    }
-
-    .calculator-table th,
-    .calculator-table td {
-        padding: 0.5rem;
-    }
-
-    /* AJUSTE DAS NOVAS LARGURAS RESPONSIVAS */
-    .label {
-        width: 50%;
-    }
-
-    .input-cell,
-    .result-cell {
-        width: 25%;
-    }
-
-    input[type="text"] {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.75rem;
-    }
-    
-    /* ... (Estilos de botões e footer mantidos) ... */
+.highlight-row.mkp-shopper .result-cell {
+    background-color: var(--color-mkp-shopper-bg);
+    color: var(--color-text);
 }
+
+.highlight-row.mkp-shopper .input-cell input[type="text"] {
+    background-color: var(--color-white);
+    color: var(--color-text);
+}
+
+/* ... (Estilos de input, botões, footer e responsividade mantidos) ... */

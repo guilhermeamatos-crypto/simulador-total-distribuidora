@@ -48,19 +48,16 @@ function calculateResults() {
     // === Primeira tabela (SIMULADOR DE REBAIXA DE PREÇO) ===
     const base1 = currencyToNumber(document.getElementById('base1').value);
     const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
-    const st1Percent = percentageToNumber(document.getElementById('st1').value);
     
     // 1. Espelhamento Base
     const result_base_mirror1 = base1;
-    document.getElementById('result_base_mirror1').textContent = formatCurrency(result_base_mirror1);
+    document.getElementById('result_base_mirror').textContent = formatCurrency(result_base_mirror1);
     
-    // 2. CÁLCULO IPI
+    // 2. CÁLCULO IPI (result_ipi1) - Base + (Base * %IPI)
     const resultIpi1 = base1 + (base1 * ipi1Percent / 100);
-    // 3. CÁLCULO ST
-    const resultSt1 = resultIpi1 + (resultIpi1 * st1Percent / 100);
+    // 3. CÁLCULO ST - REMOVIDO DA ESTRUTURA
     
     document.getElementById('result_ipi1').textContent = formatCurrency(resultIpi1);
-    document.getElementById('result_st1').textContent = formatCurrency(resultSt1);
     
     // === Segunda parte da primeira tabela (Novo Base) ===
     const novoBase = currencyToNumber(document.getElementById('novo_base').value);
@@ -78,8 +75,12 @@ function calculateResults() {
     document.getElementById('result_ipi2').textContent = formatCurrency(resultIpi2);
     document.getElementById('result_st2').textContent = formatCurrency(resultSt2);
     
-    // 7. CÁLCULO Valor para rebaixa
-    const valorRebaixa = resultSt1 - resultSt2;
+    // 7. CÁLCULO Valor para rebaixa: (Base + IPI - Antiga ST) - (Novo Base + Novo IPI + Novo ST)
+    // A Antiga ST será considerada o valor de IPI do bloco superior
+    const valorAntigo = resultIpi1; 
+    const valorNovo = resultSt2;
+
+    const valorRebaixa = valorAntigo - valorNovo;
     document.getElementById('result_rebaixa').textContent = formatCurrency(valorRebaixa);
     
     // === Segunda tabela (SIMULADOR DE PREÇO DE VENDA) ===
@@ -87,7 +88,7 @@ function calculateResults() {
     const ipi3Percent = percentageToNumber(document.getElementById('ipi3').value);
     const st3Percent = percentageToNumber(document.getElementById('st3').value);
     const incentivo = currencyToNumber(document.getElementById('incentivo').value);
-    const outrosPercent = percentageToNumber(document.getElementById('outros').value); // Nova variável
+    const outrosPercent = percentageToNumber(document.getElementById('outros').value); 
     const mcPercent = percentageToNumber(document.getElementById('mc').value);
     const mkpShopperPercent = percentageToNumber(document.getElementById('mkp_shopper').value); 
 
@@ -104,7 +105,7 @@ function calculateResults() {
     const resultSt3 = resultIpi3 + (resultIpi3 * st3Percent / 100);
     document.getElementById('result_st3').textContent = formatCurrency(resultSt3);
     
-    // 11. CÁLCULO Incentivo (result_incentivo)
+    // 11. CÁLCULO Incentivo (result_incentivo): ST - Incentivo (R$)
     const resultIncentivo = resultSt3 - incentivo;
     document.getElementById('result_incentivo').textContent = formatCurrency(resultIncentivo);
     
@@ -116,8 +117,7 @@ function calculateResults() {
     const resultMc = resultOutros + (resultOutros * (mcPercent / 100)); 
     document.getElementById('result_mc').textContent = formatCurrency(resultMc);
 
-    // 14. CÁLCULO MKP Shopper (Acréscimo simples do percentual)
-    // Formula: Resultado MC + (Resultado MC * (MKP Shopper / 100))
+    // 14. NOVO: CÁLCULO MKP Shopper = resultado_mc + (resultado_mc * %MKP Shopper)
     const resultMkpShopper = resultMc + (resultMc * mkpShopperPercent / 100);
     document.getElementById('result_mkp_shopper').textContent = formatCurrency(resultMkpShopper);
 }

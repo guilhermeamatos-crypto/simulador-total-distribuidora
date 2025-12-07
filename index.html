@@ -23,9 +23,9 @@
                 <div class="table-wrapper">
                     <table class="calculator-table">
                         <thead>
-                            <tr class="cabecalho-principal">
+                            <tr>
                                 <th colspan="2">$ Base</th>
-                                <th colspan="2">Resultado</th>
+                                <th colspan="1">Resultado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +34,7 @@
                                 <td class="input-cell">
                                     <input type="text" id="base1" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Base</td> <td class="result-cell">
+                                <td class="result-cell">
                                     <span id="result_base_mirror" class="result-value">R$ 0,00</span> 
                                 </td>
                             </tr>
@@ -43,7 +43,6 @@
                                 <td class="input-cell">
                                     <input type="text" id="ipi1" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">IPI</td>
                                 <td class="result-cell">
                                     <span id="result_ipi1" class="result-value">R$ 0,00</span>
                                 </td>
@@ -53,7 +52,6 @@
                                 <td class="input-cell">
                                     <input type="text" id="st1" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">ST</td>
                                 <td class="result-cell">
                                     <span id="result_st1" class="result-value">R$ 0,00</span>
                                 </td>
@@ -63,16 +61,15 @@
                                 <td class="input-cell">
                                     <input type="text" id="novo_base" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Novo $ Base</td> <td class="result-cell">
+                                <td class="result-cell">
                                     <span id="result_novo_base_mirror" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr> 
+                            <tr>
                                 <td class="label">IPI</td>
                                 <td class="input-cell">
                                     <input type="text" id="ipi2" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">IPI</td>
                                 <td class="result-cell">
                                     <span id="result_ipi2" class="result-value">R$ 0,00</span>
                                 </td>
@@ -82,13 +79,12 @@
                                 <td class="input-cell">
                                     <input type="text" id="st2" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">ST</td>
                                 <td class="result-cell">
                                     <span id="result_st2" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
                             <tr class="highlight-row valor-rebaixa">
-                                <td class="label" colspan="3">Valor para Rebaixa</td>
+                                <td class="label" colspan="2">Valor para Rebaixa</td> 
                                 <td class="result-cell">
                                     <span id="result_rebaixa" class="result-value">R$ 0,00</span>
                                 </td>
@@ -103,9 +99,9 @@
                 <div class="table-wrapper">
                     <table class="calculator-table">
                         <thead>
-                            <tr class="cabecalho-principal">
+                            <tr>
                                 <th colspan="2">$ Base</th>
-                                <th colspan="2">Resultado</th>
+                                <th colspan="1">Resultado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,7 +110,7 @@
                                 <td class="input-cell">
                                     <input type="text" id="base2" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Base</td> <td class="result-cell">
+                                <td class="result-cell">
                                     <span id="result_base2_mirror" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
@@ -123,7 +119,6 @@
                                 <td class="input-cell">
                                     <input type="text" id="ipi3" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">IPI</td>
                                 <td class="result-cell">
                                     <span id="result_ipi3" class="result-value">R$ 0,00</span>
                                 </td>
@@ -133,7 +128,6 @@
                                 <td class="input-cell">
                                     <input type="text" id="st3" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">ST</td>
                                 <td class="result-cell">
                                     <span id="result_st3" class="result-value">R$ 0,00</span>
                                 </td>
@@ -143,7 +137,6 @@
                                 <td class="input-cell">
                                     <input type="text" id="incentivo" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Incentivo</td>
                                 <td class="result-cell">
                                     <span id="result_incentivo" class="result-value">R$ 0,00</span>
                                 </td>
@@ -153,7 +146,6 @@
                                 <td class="input-cell">
                                     <input type="text" id="outros" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">Outros (Total)</td>
                                 <td class="result-cell">
                                     <span id="result_outros" class="result-value">R$ 0,00</span>
                                 </td>
@@ -163,12 +155,11 @@
                                 <td class="input-cell">
                                     <input type="text" id="mc" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
-                                <td class="label">MC</td>
                                 <td class="result-cell">
                                     <span id="result_mc" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </section>
@@ -181,7 +172,7 @@
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 Total Distribuidora - Simulador de Preços. Guilherme Matos.</p>
+            <p>&copy;Guilherme Matos - Simulador de Preços Total Distribuidora 2025.</p>
         </footer>
     </div>
 

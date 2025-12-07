@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador Total Distribuidora</title>
+    <title>SIMULADOR TOTAL DISTRIBUIDORA</title>
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
@@ -13,7 +13,7 @@
                 <img src="baston.png" alt="baston Logo" class="logo baston-logo">
                 <img src="Total.jpg" alt="total Logo" class="logo total-logo">
             </div>
-            <h1>Simulador Total Distribuidora</h1>
+            <h1>SIMULADOR TOTAL DISTRIBUIDORA</h1>
         </header>
 
         <main class="main-content grid-layout"> 
@@ -42,7 +42,7 @@
                                 </td>
                             </tr>
                             
-                            <tr class="highlight-row novo-base green-bg-white-font">
+                            <tr class="highlight-row novo-base valor-rebaixa">
                                 <td class="label">Novo $ Base</td>
                                 <td class="input-cell">
                                     <input type="text" id="novo_base" class="currency-input" placeholder="0,00" value="0,00">
@@ -110,6 +110,7 @@
                                 </td>
                                 <td class="result-cell">
                                     <span id="result_st3" class="result-value">R$ 0,00</span>
+                                
                                 </td>
                             </tr>
                             <tr class="highlight-row incentivo yellow-bg-black-font"> 
@@ -121,9 +122,13 @@
                                     <span id="result_incentivo" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
+                            
                             <tr class="highlight-row outros blue-bg-black-font">
-                                <td class="label" colspan="2">Outros (%)</td>
-                                <td class="result-cell result-outros-blue">
+                                <td class="label">Outros (%)</td>
+                                <td class="input-cell">
+                                    <input type="text" id="outros" class="percentage-input" placeholder="0,00%" value="0,00%">
+                                </td>
+                                <td class="result-cell">
                                     <span id="result_outros" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
@@ -137,7 +142,7 @@
                                 </td>
                             </tr>
                             <tr class="highlight-row mkp-shopper yellow-pastel-bg-black-font">
-                                <td class="label mkp-shopper-label-black-font">MKP Shopper (%)</td>
+                                <td class="label">MKP Shopper (%)</td>
                                 <td class="input-cell">
                                     <input type="text" id="mkp_shopper" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
@@ -158,7 +163,7 @@
         </main>
 
         <footer class="footer">
-            <p>&copy;Guilherme Matos - Simulador Total Distribuidora 2025</p>
+            <p>&copy; Guilherme Matos - Simulador Total Distribuidora 2025</p>
         </footer>
     </div>
 

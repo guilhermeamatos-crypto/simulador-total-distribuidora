@@ -49,24 +49,31 @@ function calculateResults() {
     const base1 = currencyToNumber(document.getElementById('base1').value);
     const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
     
+    // 1. Espelhamento Base
     const result_base_mirror1 = base1;
     document.getElementById('result_base_mirror').textContent = formatCurrency(result_base_mirror1);
     
+    // 2. CÁLCULO IPI (result_ipi1) - Base + (Base * %IPI). Esta será a Base Antiga.
     const resultIpi1 = base1 + (base1 * ipi1Percent / 100);
     document.getElementById('result_ipi1').textContent = formatCurrency(resultIpi1);
     
+    // === Segunda parte da primeira tabela (Novo Base) ===
     const novoBase = currencyToNumber(document.getElementById('novo_base').value);
     const ipi2Percent = percentageToNumber(document.getElementById('ipi2').value);
     const st2Percent = percentageToNumber(document.getElementById('st2').value);
     
+    // 3. Espelhamento Novo Base
     document.getElementById('result_novo_base_mirror').textContent = formatCurrency(novoBase);
     
+    // 4. CÁLCULO IPI (Novo Base)
     const resultIpi2 = novoBase + (novoBase * ipi2Percent / 100);
+    // 5. CÁLCULO ST (Novo Base)
     const resultSt2 = resultIpi2 + (resultIpi2 * st2Percent / 100);
     
     document.getElementById('result_ipi2').textContent = formatCurrency(resultIpi2);
     document.getElementById('result_st2').textContent = formatCurrency(resultSt2);
     
+    // 6. CÁLCULO Valor para rebaixa
     const valorAntigo = resultIpi1; 
     const valorNovo = resultSt2;
 
@@ -78,34 +85,44 @@ function calculateResults() {
     const ipi3Percent = percentageToNumber(document.getElementById('ipi3').value);
     const st3Percent = percentageToNumber(document.getElementById('st3').value);
     const incentivo = currencyToNumber(document.getElementById('incentivo').value);
+    
+    // Input restaurado
+    const outrosPercent = percentageToNumber(document.getElementById('outros').value); 
+    
     const mcPercent = percentageToNumber(document.getElementById('mc').value);
     const mkpShopperPercent = percentageToNumber(document.getElementById('mkp_shopper').value); 
 
     
+    // 7. Espelhamento do $ Base (base2)
     const result_base2_mirror = base2;
     document.getElementById('result_base2_mirror').textContent = formatCurrency(result_base2_mirror);
     
+    // 8. CÁLCULO IPI (result_ipi3)
     const resultIpi3 = base2 + (base2 * ipi3Percent / 100);
     document.getElementById('result_ipi3').textContent = formatCurrency(resultIpi3);
     
+    // 9. CÁLCULO ST (result_st3)
     const resultSt3 = resultIpi3 + (resultIpi3 * st3Percent / 100);
     document.getElementById('result_st3').textContent = formatCurrency(resultSt3);
     
+    // 10. CÁLCULO Incentivo (result_incentivo): ST - Incentivo (R$)
     const resultIncentivo = resultSt3 - incentivo;
     document.getElementById('result_incentivo').textContent = formatCurrency(resultIncentivo);
     
-    // Outros (%) é agora um valor que espelha o Incentivo (resultIncentivo)
-    const resultOutros = resultIncentivo; 
+    // 11. CÁLCULO Outros = resultado_incentivo + (resultado_incentivo * %Outros)
+    const resultOutros = resultIncentivo + (resultIncentivo * (outrosPercent / 100)); 
     document.getElementById('result_outros').textContent = formatCurrency(resultOutros);
 
+    // 12. CÁLCULO MC = resultado_outros + (resultado_outros * %MC)
     const resultMc = resultOutros + (resultOutros * (mcPercent / 100)); 
     document.getElementById('result_mc').textContent = formatCurrency(resultMc);
 
+    // 13. CÁLCULO MKP Shopper = resultado_mc + (resultado_mc * %MKP Shopper)
     const resultMkpShopper = resultMc + (resultMc * mkpShopperPercent / 100);
     document.getElementById('result_mkp_shopper').textContent = formatCurrency(resultMkpShopper);
 }
 
-// Event listeners para formatação (Mantidos)
+// Event listeners para formatação e cálculo (Mantidos)
 document.querySelectorAll('.currency-input, .percentage-input').forEach(input => {
     input.addEventListener('blur', () => {
         if (input.classList.contains('currency-input')) {

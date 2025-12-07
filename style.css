@@ -11,16 +11,16 @@
     --color-secondary: #2d5f8d; /* Azul Mais Claro (Label padrão) */
     
     /* Cores de Destaque */
-    --color-success: #4caf50; /* Verde (Novo $ Base) */
+    --color-success: #4caf50; /* Verde (Rebaixa) */
     --color-warning: #ffc107; /* Amarelo (Incentivo) */
     
     /* Cor do MKP Shopper (Amarelo Pastel) */
-    --color-mkp-shopper-bg: #fffde7; 
+    --color-mkp-shopper-bg: #fff8e1; 
     
     /* Cores de Fundo de Resultados Padrão (Azul bem claro) */
     --color-result-bg-light-blue: #e6f0ff; 
 
-    --color-text: #333; 
+    --color-text: #333; /* Preto */
     --color-border: #ddd;
     --color-bg: #f5f5f5;
     --color-white: #fff;
@@ -29,17 +29,20 @@
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
 }
 
-/* ... (Estilos body, container, header, logo-section, etc. mantidos) ... */
+/* ... (Estilos body, container, header, logo-section mantidos) ... */
 
-/* Layout de Grade para as Seções Lado a Lado (Padrão RB) */
+/* Layout de Grade para as Seções Lado a Lado */
 .main-content.grid-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    grid-template-columns: 1fr 1fr; 
     gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
 }
 
 /* Tabela */
@@ -55,9 +58,9 @@
     vertical-align: middle;
 }
 
-/* AJUSTE DAS LARGURAS PARA O MODELO RB: 50% / 25% / 25% */
+/* AJUSTE DAS LARGURAS: 50% (Label), 25% (Input), 25% (Resultado) */
 .label {
-    background-color: var(--color-secondary); /* Azul da Total */
+    background-color: var(--color-secondary);
     color: var(--color-white);
     font-weight: 500;
     text-align: left;
@@ -70,7 +73,7 @@
 }
 
 .result-cell {
-    background-color: var(--color-result-bg-light-blue); /* Azul Claro para Resultados Padrão */
+    background-color: var(--color-result-bg-light-blue); 
     font-weight: 600;
     color: var(--color-text);
     width: 25%; /* COLUNA C: 25% */
@@ -79,6 +82,20 @@
 
 /* --- ESTILOS POR LINHA DE DESTAQUE --- */
 
+/* Linhas Padrão (Base, IPI, ST, Outros, MC) */
+.calculator-table tbody tr:not(.highlight-row) .label,
+.highlight-row:not(.green-bg-white-font):not(.yellow-bg-black-font):not(.yellow-pastel-bg-black-font) .label {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.calculator-table tbody tr:not(.highlight-row) .result-cell,
+.highlight-row:not(.green-bg-white-font):not(.yellow-bg-black-font):not(.yellow-pastel-bg-black-font) .result-cell {
+    background-color: var(--color-result-bg-light-blue); 
+    color: var(--color-text);
+}
+
+
 /* 1. Novo $ Base e Valor para Rebaixa (Fundo VERDE, Fonte BRANCA) */
 .highlight-row.green-bg-white-font td {
     background-color: var(--color-success) !important;
@@ -86,7 +103,7 @@
 }
 .highlight-row.green-bg-white-font .input-cell input[type="text"] {
     background-color: var(--color-white);
-    color: var(--color-text); 
+    color: var(--color-text); /* Input mantém fonte preta para contraste */
 }
 .highlight-row.green-bg-white-font .result-value {
     color: var(--color-white) !important; 
@@ -110,10 +127,10 @@
     color: var(--color-text) !important;
 }
 .highlight-row.yellow-pastel-bg-black-font .input-cell {
-    background-color: var(--color-mkp-shopper-bg) !important; 
+    background-color: var(--color-mkp-shopper-bg) !important; /* Mantém fundo pastel na célula */
 }
 .highlight-row.yellow-pastel-bg-black-font .input-cell input[type="text"] {
-    background-color: var(--color-white); 
+    background-color: var(--color-white); /* Input em si é branco para digitação */
     color: var(--color-text);
 }
 
@@ -138,4 +155,12 @@ input[type="text"] {
     font-family: 'Courier New', monospace;
 }
 
-/* ... (Estilos action-buttons e footer e responsividade mantidos) ... */
+/* ... (Estilos action-buttons e footer mantidos) ... */
+
+/* Responsividade - Adaptação do Grid */
+@media (max-width: 768px) {
+    .main-content.grid-layout {
+        grid-template-columns: 1fr; /* Colunas em pilha para mobile */
+    }
+    /* ... (Outras regras de responsividade mantidas) ... */
+}

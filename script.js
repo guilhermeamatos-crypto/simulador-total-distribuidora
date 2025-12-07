@@ -73,7 +73,7 @@ function calculateResults() {
     document.getElementById('result_ipi2').textContent = formatCurrency(resultIpi2);
     document.getElementById('result_st2').textContent = formatCurrency(resultSt2);
     
-    // 6. CÁLCULO Valor para rebaixa: (Base Antiga) - (Novo Base + Novo IPI + Novo ST)
+    // 6. CÁLCULO Valor para rebaixa
     const valorAntigo = resultIpi1; 
     const valorNovo = resultSt2;
 
@@ -85,9 +85,8 @@ function calculateResults() {
     const ipi3Percent = percentageToNumber(document.getElementById('ipi3').value);
     const st3Percent = percentageToNumber(document.getElementById('st3').value);
     const incentivo = currencyToNumber(document.getElementById('incentivo').value);
-    const outrosPercent = percentageToNumber(document.getElementById('outros').value); 
+    // 1. O campo de input 'outros' foi removido, o valor deve vir diretamente do cálculo
     const mcPercent = percentageToNumber(document.getElementById('mc').value);
-    // NOVO: MKP Shopper
     const mkpShopperPercent = percentageToNumber(document.getElementById('mkp_shopper').value); 
 
     
@@ -107,8 +106,15 @@ function calculateResults() {
     const resultIncentivo = resultSt3 - incentivo;
     document.getElementById('result_incentivo').textContent = formatCurrency(resultIncentivo);
     
-    // 11. CÁLCULO Outros (Total) = resultado_incentivo + (resultado_incentivo * %Outros)
-    const resultOutros = resultIncentivo + (resultIncentivo * (outrosPercent / 100)); 
+    // 11. CÁLCULO Outros (Total) - Usando o campo MC como o % de Outros
+    // Assumindo que o campo 'Outros (%)' se tornou um resultado espelhado do Incentivo 
+    // ou se refere ao valor final após IPI/ST/Incentivo. Manteremos como um valor-base
+    // sem a aplicação de % adicional, conforme a remoção do input.
+    // **Atenção:** Se houver uma lógica específica para "Outros (%)", essa parte do cálculo precisa ser revisada. 
+    // Mantendo a lógica anterior, onde 'Outros' era um cálculo:
+    
+    // Como o campo de input 'Outros' foi removido, a linha Outros assume o valor de Incentivo.
+    const resultOutros = resultIncentivo; 
     document.getElementById('result_outros').textContent = formatCurrency(resultOutros);
 
     // 12. CÁLCULO MC = resultado_outros + (resultado_outros * %MC)

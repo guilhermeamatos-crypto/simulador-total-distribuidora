@@ -10,13 +10,13 @@
     <div class="container">
         <header class="header">
             <div class="logo-section">
-                <img src="baston.png" alt="BASTON Logo" class="logo baston-logo">
-                <img src="Total.jpg" alt="TOTAL Logo" class="logo total-logo">
+                <img src="baston.png" alt="baston Logo" class="logo baston-logo">
+                <img src="Total.jpg" alt="total Logo" class="logo total-logo">
             </div>
             <h1>Simulador Total Distribuidora</h1>
         </header>
 
-        <main class="main-content grid-layout">
+        <main class="main-content grid-layout"> 
             
             <section class="calculator-section section-rebaixa">
                 <h2 class="section-title">Simulador de Rebaixa de Preço</h2>
@@ -24,19 +24,18 @@
                     <table class="calculator-table">
                         <thead>
                             <tr class="cabecalho-principal">
-                                <th colspan="2">$ Base</th> 
+                                <th colspan="2">$ Base</th>
                                 <th colspan="2">Resultado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="label">Base</td>
+                                <td class="label">$ Base</td>
                                 <td class="input-cell">
                                     <input type="text" id="base1" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Base</td> 
-                                <td class="result-cell">
-                                    <span id="result_base_mirror1" class="result-value">R$ 0,00</span>
+                                <td class="label">Base</td> <td class="result-cell">
+                                    <span id="result_base_mirror" class="result-value">R$ 0,00</span> 
                                 </td>
                             </tr>
                             <tr>
@@ -64,12 +63,11 @@
                                 <td class="input-cell">
                                     <input type="text" id="novo_base" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Novo $ Base</td>
-                                <td class="result-cell">
+                                <td class="label">Novo $ Base</td> <td class="result-cell">
                                     <span id="result_novo_base_mirror" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row novo-base">
+                            <tr> 
                                 <td class="label">IPI</td>
                                 <td class="input-cell">
                                     <input type="text" id="ipi2" class="percentage-input" placeholder="0,00%" value="0,00%">
@@ -79,7 +77,7 @@
                                     <span id="result_ipi2" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row novo-base">
+                            <tr>
                                 <td class="label">ST</td>
                                 <td class="input-cell">
                                     <input type="text" id="st2" class="percentage-input" placeholder="0,00%" value="0,00%">
@@ -112,12 +110,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="label">Base</td>
+                                <td class="label">$ Base</td>
                                 <td class="input-cell">
                                     <input type="text" id="base2" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="label">Base</td>
-                                <td class="result-cell">
+                                <td class="label">Base</td> <td class="result-cell">
                                     <span id="result_base2_mirror" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
@@ -171,21 +168,11 @@
                                     <span id="result_mc" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row mkp-shopper">
-                                <td class="label">MKP Shopper (%)</td>
-                                <td class="input-cell">
-                                    <input type="text" id="mkp_shopper" class="percentage-input" placeholder="0,00%" value="0,00%">
-                                </td>
-                                <td class="label">MKP Shopper</td>
-                                <td class="result-cell">
-                                    <span id="result_mkp_shopper" class="result-value">R$ 0,00</span>
-                                </td>
-                            </tr>
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </section>
-
+            
             <div class="action-buttons">
                 <button id="calculateBtn" class="btn btn-calculate">Calcular</button> 
                 <button id="resetBtn" class="btn btn-reset">Limpar</button>

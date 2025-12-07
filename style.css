@@ -6,15 +6,24 @@
 }
 
 :root {
-    --color-primary: #1e4d7b;
-    --color-secondary: #2d5f8d;
-    --color-success: #4caf50;
-    --color-warning: #ffc107;
+    /* CORES RESTAURADAS PARA O TEMA AZUL */
+    --color-primary: #1e4d7b; /* Azul Escuro (Cabeçalho, Títulos) */
+    --color-secondary: #2d5f8d; /* Azul Mais Claro (Label padrão) */
+    
+    --color-success: #4caf50; /* Verde (Novo $ Base, Valor para Rebaixa) */
+    --color-warning: #ffc107; /* Amarelo (Incentivo) */
+    
     --color-danger: #f44336;
     --color-text: #333;
     --color-border: #ddd;
     --color-bg: #f5f5f5;
     --color-white: #fff;
+    
+    /* Cores de Destaque */
+    --color-mkp-shopper: #fff8e1; /* Amarelo Pastel para MKP Shopper */
+    --color-result-bg: #e6f0ff; /* Azul Claro para resultados padrão */
+    --color-outros: #2d5f8d; /* Azul Mais Claro para Outros (Total) */
+
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
@@ -44,56 +53,79 @@ body {
     padding: var(--spacing-sm);
 }
 
-/* Header */
+/* Header - Redução de Altura e Logos Proporcionais */
 .header {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     color: var(--color-white);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg); /* Reduzido o padding vertical */
     border-radius: 8px;
     margin-bottom: var(--spacing-lg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
     gap: var(--spacing-md);
 }
 
 .logo-section {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     align-items: center;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; 
 }
 
 .logo {
-    max-height: 60px;
+    max-height: 45px; /* Novo tamanho base para as logos */
     width: auto;
     filter: brightness(1.1);
 }
 
-/* Seletores para as logos */
 .baston-logo { 
-    max-height: 50px;
+    max-height: 40px; 
 }
 
 .total-logo { 
-    max-height: 100px;
+    max-height: 40px; 
 }
 
 .header h1 {
     font-size: var(--font-size-xl);
     font-weight: 600;
-    text-align: center;
+    text-align: center; 
     margin: 0;
 }
 
 /* Conteúdo principal */
 .main-content {
-    display: flex;
-    flex-direction: column;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
+}
+
+/* Layout de Grade para as Seções Lado a Lado */
+.main-content.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: var(--spacing-lg);
+}
+
+@media (max-width: 1024px) {
+    .main-content.grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilo para os Títulos das Seções - Altura Reduzida Pela Metade */
+.section-title {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-xs) var(--spacing-md); /* Reduzido de sm para xs */
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+    text-transform: uppercase;
 }
 
 /* Seção da calculadora */
@@ -126,6 +158,10 @@ body {
     font-weight: 600;
     border: 1px solid var(--color-primary);
 }
+.calculator-table thead th:last-child {
+    text-align: right; 
+}
+
 
 .calculator-table td {
     padding: var(--spacing-md);
@@ -133,113 +169,92 @@ body {
     vertical-align: middle;
 }
 
-.calculator-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
-
-.calculator-table tbody tr:hover {
-    background-color: #f0f0f0;
-}
-
-/* Células de label */
+/* Células de label (Primeira Coluna A) */
 .label {
     background-color: var(--color-secondary);
     color: var(--color-white);
     font-weight: 500;
     text-align: left;
-    width: 30%;
+    width: 40%; /* Ajustado o width para a nova coluna na segunda tabela */
 }
 
-/* Células de input */
+/* Células de input (Segunda Coluna B) */
 .input-cell {
     background-color: var(--color-white);
-    width: 20%;
+    width: 25%; /* Ajustado o width */
 }
 
-/* Células de resultado */
+/* Células de resultado (Terceira Coluna D) */
 .result-cell {
-    background-color: #e8f5e9;
+    background-color: var(--color-result-bg); /* Azul Claro para resultado padrão */
     font-weight: 600;
-    color: var(--color-text);
-    width: 25%;
+    color: var(--color-text); /* Cor do texto padrão (preto) */
+    width: 35%; /* Ajustado o width */
+    text-align: right;
 }
 
-/* Linhas destacadas */
-.highlight-row {
-    background-color: var(--color-success) !important;
-    color: var(--color-white);
-}
+/* --- ESTILOS POR LINHA --- */
 
-.highlight-row .label {
-    background-color: var(--color-success);
-    color: var(--color-white);
-}
-
-.highlight-row .result-cell {
-    background-color: var(--color-success);
-    color: var(--color-white);
-}
-
-.highlight-row .input-cell {
-    background-color: var(--color-success);
-    color: var(--color-white);
-}
-
-/* Linha de novo base */
-.novo-base {
+/* Linhas de Destaque VERDE (Novo $ Base e Valor para Rebaixa) */
+.highlight-row.novo-base,
+.highlight-row.valor-rebaixa {
     background-color: var(--color-success) !important;
 }
 
-.novo-base .label,
-.novo-base .input-cell {
+/* Aplica o verde/branco no label e result-cell */
+.highlight-row.novo-base .label,
+.highlight-row.valor-rebaixa .label,
+.highlight-row.novo-base .result-cell,
+.highlight-row.valor-rebaixa .result-cell {
     background-color: var(--color-success);
     color: var(--color-white);
 }
 
-/* Linha de valor para rebaixa */
-.valor-rebaixa {
-    background-color: var(--color-success) !important;
-}
-
-.valor-rebaixa .label,
-.valor-rebaixa .result-cell {
+.highlight-row.novo-base .input-cell {
     background-color: var(--color-success);
-    color: var(--color-white);
 }
 
-/* Linha de incentivo */
-.incentivo {
+/* Linha de Incentivo (Amarelo Padrão) */
+.highlight-row.incentivo {
     background-color: var(--color-warning) !important;
     color: var(--color-text);
 }
 
-.incentivo .label {
+/* Aplica o amarelo/texto escuro no label e result-cell */
+.highlight-row.incentivo .label,
+.highlight-row.incentivo .result-cell,
+.highlight-row.incentivo .input-cell {
     background-color: var(--color-warning);
     color: var(--color-text);
 }
 
-.incentivo .input-cell {
-    background-color: var(--color-warning);
-    color: var(--color-text);
-}
-
-.incentivo .result-cell {
-    background-color: var(--color-warning);
-    color: var(--color-text);
-}
-
-/* Linha de outros */
-.outros {
-    background-color: var(--color-secondary) !important;
+/* Linha de Outros (Total) - NOVO ESTILO (Azul Secundário) */
+.highlight-row.outros {
+    background-color: var(--color-outros) !important;
     color: var(--color-white);
 }
 
-.outros .label,
-.outros .input-cell,
-.outros .result-cell {
-    background-color: var(--color-secondary);
+/* Aplica o azul secundário/texto branco no label e result-cell */
+.highlight-row.outros .label,
+.highlight-row.outros .result-cell {
+    background-color: var(--color-outros);
     color: var(--color-white);
 }
+
+/* Linha de MKP Shopper (Amarelo Pastel) */
+.mkp-shopper {
+    background-color: var(--color-mkp-shopper) !important;
+    color: var(--color-text);
+}
+
+/* Aplica o pastel/texto escuro no label e result-cell */
+.mkp-shopper .label,
+.mkp-shopper .input-cell,
+.mkp-shopper .result-cell {
+    background-color: var(--color-mkp-shopper);
+    color: var(--color-text);
+}
+
 
 /* Inputs */
 input[type="text"] {
@@ -252,21 +267,15 @@ input[type="text"] {
     background-color: var(--color-white);
     color: var(--color-text);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: right; 
 }
 
-input[type="text"]:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 4px rgba(30, 77, 123, 0.3);
-}
-
-.highlight-row input[type="text"],
-.novo-base input[type="text"],
-.valor-rebaixa input[type="text"],
-.incentivo input[type="text"],
-.outros input[type="text"] {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: var(--color-text);
+/* Ajusta a cor de fundo dos inputs nas células coloridas para que fiquem brancos */
+.highlight-row.novo-base .input-cell input[type="text"],
+.highlight-row.incentivo .input-cell input[type="text"],
+.highlight-row.outros .input-cell input[type="text"],
+.mkp-shopper .input-cell input[type="text"] {
+    background-color: var(--color-white);
 }
 
 /* Valores de resultado */
@@ -274,30 +283,24 @@ input[type="text"]:focus {
     display: block;
     font-weight: 600;
     font-family: 'Courier New', monospace;
-    color: var(--color-text);
+    color: var(--color-text); /* Define a cor padrão do texto (PRETO) para o resultado */
 }
 
-.highlight-row .result-value,
-.novo-base .result-value,
-.valor-rebaixa .result-value {
-    color: var(--color-white);
+/* Garante texto BRANCO apenas nos resultados das linhas de DESTAQUE VERDE e OUTROS */
+.highlight-row.novo-base .result-value,
+.highlight-row.valor-rebaixa .result-value,
+.highlight-row.outros .result-value {
+    color: var(--color-white) !important; 
 }
 
-.incentivo .result-value {
-    color: var(--color-text);
-}
-
-.outros .result-value {
-    color: var(--color-white);
-}
-
-/* Botões de ação */
+/* Botões de ação - CENTRALIZADO */
 .action-buttons {
     display: flex;
     gap: var(--spacing-md);
-    justify-content: center;
+    justify-content: center; /* CENTRALIZADO */
     flex-wrap: wrap;
     margin-top: var(--spacing-lg);
+    grid-column: 1 / -1; 
 }
 
 .btn {
@@ -338,7 +341,7 @@ input[type="text"]:focus {
 }
 
 .btn-print:hover {
-    background-color: #163a52;
+    background-color: #1a4165;
     box-shadow: 0 4px 8px rgba(30, 77, 123, 0.3);
 }
 
@@ -346,18 +349,30 @@ input[type="text"]:focus {
     transform: scale(0.98);
 }
 
-/* Footer */
+/* Footer - CENTRALIZADO */
 .footer {
     background-color: var(--color-primary);
     color: var(--color-white);
-    text-align: center;
+    text-align: center; 
     padding: var(--spacing-md);
     border-radius: 8px;
     margin-top: var(--spacing-xl);
     font-size: var(--font-size-sm);
+    grid-column: 1 / -1; 
 }
 
-/* Responsividade - Tablets */
+/* Centraliza o texto do footer */
+.footer p {
+    text-align: center;
+    margin: 0; 
+}
+
+/* Responsividade (Mantida e ajustada) */
+@media (max-width: 1024px) {
+    .main-content.grid-layout {
+        grid-template-columns: 1fr; 
+    }
+}
 @media (max-width: 768px) {
     .container {
         padding: var(--spacing-xs);
@@ -372,8 +387,8 @@ input[type="text"]:focus {
         gap: var(--spacing-md);
     }
 
-    .logo {
-        max-height: 45px;
+    .logo, .baston-logo, .total-logo {
+        max-height: 35px;
     }
 
     .header h1 {
@@ -414,9 +429,13 @@ input[type="text"]:focus {
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: var(--font-size-sm);
     }
+
+    .footer {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-md);
+    }
 }
 
-/* Responsividade - Smartphones */
 @media (max-width: 480px) {
     :root {
         font-size: 14px;
@@ -437,8 +456,8 @@ input[type="text"]:focus {
         flex-direction: column;
     }
 
-    .logo {
-        max-height: 40px;
+    .logo, .baston-logo, .total-logo {
+        max-height: 30px; 
     }
 
     .header h1 {
@@ -494,7 +513,6 @@ input[type="text"]:focus {
     }
 }
 
-/* Impressão */
 @media print {
     body {
         background-color: var(--color-white);

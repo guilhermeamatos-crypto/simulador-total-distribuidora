@@ -43,16 +43,23 @@ function formatPercentageInput(input) {
     input.value = formatted + '%'; 
 }
 
-// Função para calcular resultados (Lógica Mantida)
+// Função para calcular resultados
 function calculateResults() {
     // === SIMULADOR DE REBAIXA DE PREÇO ===
     const base1 = currencyToNumber(document.getElementById('base1').value);
     const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
+    const st1Percent = percentageToNumber(document.getElementById('st1').value); // NOVO CAMPO ST1
     
     document.getElementById('result_base_mirror').textContent = formatCurrency(base1);
     
-    const resultIpi1 = base1 + (base1 * ipi1Percent / 100);
-    document.getElementById('result_ipi1').textContent = formatCurrency(resultIpi1);
+    // Cálculo da Linha IPI (Base + IPI)
+    const valorAposIpi1 = base1 + (base1 * ipi1Percent / 100);
+    document.getElementById('result_ipi1').textContent = formatCurrency(valorAposIpi1);
+    
+    // Cálculo da Linha ST (Valor Apos IPI + ST) -> Base Antiga Completa
+    const baseAntigaCompleta = valorAposIpi1 + (valorAposIpi1 * st1Percent / 100);
+    document.getElementById('result_st1').textContent = formatCurrency(baseAntigaCompleta); // Exibe o valor total da Base Antiga
+    
     
     const novoBase = currencyToNumber(document.getElementById('novo_base').value);
     const ipi2Percent = percentageToNumber(document.getElementById('ipi2').value);
@@ -61,12 +68,13 @@ function calculateResults() {
     document.getElementById('result_novo_base_mirror').textContent = formatCurrency(novoBase);
     
     const resultIpi2 = novoBase + (novoBase * ipi2Percent / 100);
-    const resultSt2 = resultIpi2 + (resultIpi2 * st2Percent / 100);
+    const resultSt2 = resultIpi2 + (resultIpi2 * st2Percent / 100); // Base Nova Completa
     
     document.getElementById('result_ipi2').textContent = formatCurrency(resultIpi2);
     document.getElementById('result_st2').textContent = formatCurrency(resultSt2);
     
-    const valorRebaixa = resultIpi1 - resultSt2;
+    // Valor para Rebaixa = Base Antiga Completa - Base Nova Completa
+    const valorRebaixa = baseAntigaCompleta - resultSt2;
     document.getElementById('result_rebaixa').textContent = formatCurrency(valorRebaixa);
     
     // === SIMULADOR DE PREÇO DE VENDA ===

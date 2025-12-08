@@ -1,6 +1,7 @@
-// Funções de conversão e formatação (Mantidas)
+// Funções de conversão e formatação 
 function currencyToNumber(value) {
     if (!value) return 0;
+    // Garante que o valor sempre volte para float, tratando o formato pt-BR
     return parseFloat(value.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
 }
 function percentageToNumber(value) {
@@ -43,12 +44,12 @@ function formatPercentageInput(input) {
     input.value = formatted + '%'; 
 }
 
-// Função principal de cálculo (CORRIGIDA)
+// Função principal de cálculo (COMPLETAMENTE CORRIGIDA)
 function calculateResults() {
     // === SIMULADOR DE REBAIXA DE PREÇO ===
     const base1 = currencyToNumber(document.getElementById('base1').value);
     const ipi1Percent = percentageToNumber(document.getElementById('ipi1').value);
-    const st1Percent = percentageToNumber(document.getElementById('st1').value); // Campo ST1 (Base Antiga)
+    const st1Percent = percentageToNumber(document.getElementById('st1').value); 
     
     document.getElementById('result_base_mirror').textContent = formatCurrency(base1);
     
@@ -111,7 +112,7 @@ function calculateResults() {
     document.getElementById('result_mkp_shopper').textContent = formatCurrency(resultMkpShopper);
 }
 
-// Event listeners para formatação e cálculo (MANTIDOS E ATIVOS)
+// Event listeners para formatação
 document.querySelectorAll('.currency-input, .percentage-input').forEach(input => {
     input.addEventListener('blur', () => {
         if (input.classList.contains('currency-input')) {
@@ -122,7 +123,9 @@ document.querySelectorAll('.currency-input, .percentage-input').forEach(input =>
     });
 });
 
+// Event listener para o botão de calcular
 document.getElementById('calculateBtn').addEventListener('click', () => {
+    // Força a formatação de qualquer campo que ainda esteja focado antes de calcular
     document.querySelectorAll('.currency-input, .percentage-input').forEach(input => {
         if (input.matches(':focus')) {
             input.blur();
@@ -131,6 +134,7 @@ document.getElementById('calculateBtn').addEventListener('click', () => {
     calculateResults();
 });
 
+// Botões de reset e imprimir
 document.getElementById('resetBtn').addEventListener('click', () => {
     if (confirm('Tem certeza que deseja limpar todos os valores?')) {
         document.querySelectorAll('input[type="text"]').forEach(input => {
@@ -139,7 +143,7 @@ document.getElementById('resetBtn').addEventListener('click', () => {
         document.querySelectorAll('.result-value').forEach(result => {
             result.textContent = 'R$ 0,00';
         });
-        calculateResults();
+        calculateResults(); // Recalcula para limpar os espelhos de base também
     }
 });
 
@@ -147,6 +151,7 @@ document.getElementById('printBtn').addEventListener('click', () => {
     window.print();
 });
 
+// Inicializa os cálculos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.currency-input').forEach(formatCurrencyInput);
     document.querySelectorAll('.percentage-input').forEach(formatPercentageInput);

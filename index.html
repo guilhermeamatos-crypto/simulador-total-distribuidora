@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador Total Distribuidora</title>
+    <title>SIMULADOR TOTAL DISTRIBUIDORA</title>
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="logo-section">
-                <img src="baston.png" alt="baston Logo" class="logo baston-logo">
                 <img src="Total.jpg" alt="total Logo" class="logo total-logo">
+                <img src="baston.png" alt="baston Logo" class="logo baston-logo">
             </div>
             <h1>Simulador Total Distribuidora</h1>
         </header>
 
-        <main class="main-content grid-layout"> 
+        <main class="main-content grid-layout">
             
             <section class="calculator-section section-rebaixa">
                 <h2 class="section-title">Simulador de Rebaixa de Preço</h2>
                 <div class="table-wrapper">
                     <table class="calculator-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th> 
+                                <th colspan="1"></th> 
+                            </tr>
+                        </thead>
                         <tbody>
                             <tr>
                                 <td class="label">$ Base</td>
@@ -50,15 +56,12 @@
                                     <span id="result_st1" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            
-                            <tr class="highlight-row green-bg-white-font novo-base">
+                            <tr class="highlight-row novo-base">
                                 <td class="label">Novo $ Base</td>
                                 <td class="input-cell">
                                     <input type="text" id="novo_base" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
-                                <td class="result-cell">
-                                    <span id="result_novo_base_mirror" class="result-value">R$ 0,00</span>
-                                </td>
+                                <td class="result-cell"></td>
                             </tr>
                             <tr>
                                 <td class="label">IPI</td>
@@ -78,8 +81,9 @@
                                     <span id="result_st2" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row green-bg-white-font valor-rebaixa">
-                                <td class="label" colspan="2">Valor para Rebaixa</td> 
+                            <tr class="highlight-row valor-rebaixa">
+                                <td class="label">Valor para Rebaixa</td>
+                                <td class="input-cell"></td>
                                 <td class="result-cell">
                                     <span id="result_rebaixa" class="result-value">R$ 0,00</span>
                                 </td>
@@ -93,6 +97,12 @@
                 <h2 class="section-title">Simulador de Preço de Venda</h2>
                 <div class="table-wrapper">
                     <table class="calculator-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th> 
+                                <th colspan="1"></th> 
+                            </tr>
+                        </thead>
                         <tbody>
                             <tr>
                                 <td class="label">$ Base</td>
@@ -121,8 +131,8 @@
                                     <span id="result_st3" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row yellow-bg-black-font incentivo"> 
-                                <td class="label">Incentivo (R$)</td>
+                            <tr class="highlight-row incentivo">
+                                <td class="label">Incentivo</td>
                                 <td class="input-cell">
                                     <input type="text" id="incentivo" class="currency-input" placeholder="0,00" value="0,00">
                                 </td>
@@ -140,8 +150,8 @@
                                     <span id="result_outros" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row mc">
-                                <td class="label">MC (%)</td>
+                            <tr>
+                                <td class="label">MC</td>
                                 <td class="input-cell">
                                     <input type="text" id="mc" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
@@ -149,8 +159,8 @@
                                     <span id="result_mc" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                            <tr class="highlight-row yellow-pastel-bg-black-font mkp-shopper">
-                                <td class="label">MKP Shopper (%)</td>
+                            <tr class="highlight-row mkp-shopper">
+                                <td class="label">MKP Shopper</td>
                                 <td class="input-cell">
                                     <input type="text" id="mkp_shopper" class="percentage-input" placeholder="0,00%" value="0,00%">
                                 </td>
@@ -158,11 +168,11 @@
                                     <span id="result_mkp_shopper" class="result-value">R$ 0,00</span>
                                 </td>
                             </tr>
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </section>
-            
+
             <div class="action-buttons">
                 <button id="calculateBtn" class="btn btn-calculate">Calcular</button> 
                 <button id="resetBtn" class="btn btn-reset">Limpar</button>
@@ -171,7 +181,7 @@
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 Total Distribuidora - Simulador de Preços. Guilherme Matos!!.</p>
+            <p>&copy; Guilherme Matos - Simulador de Preços Total Distribuidora 2025.</p>
         </footer>
     </div>
 

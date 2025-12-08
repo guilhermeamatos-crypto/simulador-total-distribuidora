@@ -6,35 +6,30 @@
 }
 
 :root {
-    /* CORES RESTAURADAS PARA O TEMA AZUL */
+    /* Cores do Tema (Total Distribuidora) */
     --color-primary: #1e4d7b; /* Azul Escuro (Cabeçalho, Títulos) */
     --color-secondary: #2d5f8d; /* Azul Mais Claro (Label padrão) */
     
-    --color-success: #4caf50; /* Verde (Novo $ Base, Valor para Rebaixa) */
+    /* Cores de Destaque */
+    --color-success: #4caf50; /* Verde (Novo $ Base) */
     --color-warning: #ffc107; /* Amarelo (Incentivo) */
     
-    --color-danger: #f44336;
-    --color-text: #333;
+    /* Cor do MKP Shopper (Amarelo Pastel) */
+    --color-mkp-shopper-bg: #fffde7; 
+    
+    /* Cores de Fundo de Resultados Padrão (Azul bem claro) */
+    --color-result-bg-light-blue: #e6f0ff; 
+
+    --color-text: #333; 
     --color-border: #ddd;
     --color-bg: #f5f5f5;
     --color-white: #fff;
-    
-    /* NOVO: Amarelo Pastel para MKP Shopper */
-    --color-mkp-shopper: #fff8e1; 
     
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
-    --font-size-lg: 1.25rem;
-    --font-size-xl: 1.5rem;
-}
-
-html {
-    font-size: 16px;
 }
 
 body {
@@ -47,15 +42,15 @@ body {
 /* Container principal */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-sm);
+    margin: var(--spacing-lg) auto;
+    padding: 0 var(--spacing-md);
 }
 
-/* Header - Ajustado Padding (Menor) e Logos */
+/* Header */
 .header {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background-color: var(--color-primary);
     color: var(--color-white);
-    padding: var(--spacing-md) var(--spacing-lg); /* Reduzido de lg para md */
+    padding: var(--spacing-lg);
     border-radius: 8px;
     margin-bottom: var(--spacing-lg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -67,78 +62,46 @@ body {
 
 .logo-section {
     display: flex;
-    gap: var(--spacing-md); /* Reduzido o espaço entre as logos */
+    gap: var(--spacing-lg);
     align-items: center;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .logo {
-    max-height: 40px; /* Reduzido o tamanho da logo padrão */
+    max-height: 60px;
     width: auto;
-    filter: brightness(1.1);
-}
-
-/* NOVO: RB Logo menor (Ajustado para proporção) */
-.rb-logo-small {
-    max-height: 100px; /* Ajuste fino para proporcionalidade */
-}
-
-.baston-logo { 
-    max-height: 40px; /* Ajuste fino para proporcionalidade */
 }
 
 .header h1 {
-    font-size: var(--font-size-xl);
+    font-size: 1.5rem;
     font-weight: 600;
-    text-align: center; 
+    text-align: center;
     margin: 0;
 }
 
-/* Conteúdo principal */
-.main-content {
-    display: flex;
-    flex-direction: column;
+/* Conteúdo principal e layout de grade */
+.main-content.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
 }
 
-/* Layout de Grade para as Seções Lado a Lado */
-.main-content.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: var(--spacing-lg);
-}
-
-@media (max-width: 1024px) {
-    .main-content.grid-layout {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Estilo para os Títulos das Seções - Diminuído pela metade */
-.section-title {
-    background: var(--color-primary);
-    color: var(--color-white);
-    padding: var(--spacing-xs) var(--spacing-md); /* Reduzido de sm para xs */
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-    margin: 0;
-    text-transform: uppercase;
-}
-
-/* Seção da calculadora */
 .calculator-section {
-    background: var(--color-white);
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.table-wrapper {
-    overflow-x: auto;
+.section-title {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: var(--spacing-xs);
+    text-align: center;
 }
 
 /* Tabela */
@@ -148,99 +111,77 @@ body {
     font-size: var(--font-size-base);
 }
 
-.calculator-table thead {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-
-.calculator-table th {
-    padding: var(--spacing-md);
-    text-align: left;
-    font-weight: 600;
-    border: 1px solid var(--color-primary);
-}
-/* Alinhamento da última coluna do cabeçalho */
-.calculator-table thead th:last-child {
-    text-align: right; 
-}
-
-
 .calculator-table td {
-    padding: 0,75rem;
+    /* AQUI ESTÁ O AJUSTE PARA REDUZIR A ALTURA DA LINHA (usando metade de 1.5rem) */
+    padding: 0.75rem; 
     border: 1px solid var(--color-border);
     vertical-align: middle;
 }
 
-/* Células de label (Primeira Coluna A) */
+/* AJUSTE DAS LARGURAS UNIFORMES: ~38% / ~30% / ~32% */
 .label {
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary); /* Azul da Total */
     color: var(--color-white);
     font-weight: 500;
     text-align: left;
-    width: 45%; 
+    width: 38%; 
 }
 
-/* Células de input (Segunda Coluna B) */
 .input-cell {
     background-color: var(--color-white);
     width: 30%; 
 }
 
-/* Células de resultado (Terceira Coluna D) - RESTAURADO O AZUL CLARO PADRÃO */
 .result-cell {
-    background-color: #e6f0ff; /* Azul Claro para resultado (RESTAURADO) */
+    background-color: var(--color-result-bg-light-blue); /* Azul Claro para Resultados Padrão */
     font-weight: 600;
-    color: var(--color-text); /* Cor do texto padrão (preto) */
-    width: 25%; 
+    color: var(--color-text);
+    width: 32%; 
     text-align: right;
 }
 
-/* --- ESTILOS POR LINHA --- */
+/* Colspan para Valor para Rebaixa */
+.valor-rebaixa .label[colspan="2"] {
+    width: 68%; /* 38% + 30% */
+}
 
-/* Linhas de Destaque VERDE (Novo $ Base e Valor para Rebaixa) */
-.highlight-row.novo-base,
-.highlight-row.valor-rebaixa {
+/* --- ESTILOS POR LINHA DE DESTAQUE --- */
+
+/* 1. Novo $ Base e Valor para Rebaixa (Fundo VERDE, Fonte BRANCA) */
+.highlight-row.green-bg-white-font td {
     background-color: var(--color-success) !important;
+    color: var(--color-white) !important;
+}
+.highlight-row.green-bg-white-font .input-cell input[type="text"] {
+    background-color: var(--color-white);
+    color: var(--color-text); 
+}
+.highlight-row.green-bg-white-font .result-value {
+    color: var(--color-white) !important; 
 }
 
-/* Aplica o verde/branco no label e result-cell */
-.highlight-row.novo-base .label,
-.highlight-row.valor-rebaixa .label,
-.highlight-row.novo-base .result-cell,
-.highlight-row.valor-rebaixa .result-cell {
-    background-color: var(--color-success);
-    color: var(--color-white);
-}
 
-.highlight-row.novo-base .input-cell {
-    background-color: var(--color-success);
-}
-
-/* Linha de Incentivo (Amarelo Padrão) */
-.highlight-row.incentivo {
+/* 2. Incentivo (Fundo AMARELO, Fonte PRETA) */
+.highlight-row.yellow-bg-black-font td {
     background-color: var(--color-warning) !important;
+    color: var(--color-text) !important;
+}
+.highlight-row.yellow-bg-black-font .input-cell input[type="text"] {
+    background-color: var(--color-white);
     color: var(--color-text);
 }
 
-/* Aplica o amarelo/texto escuro no label e result-cell */
-.highlight-row.incentivo .label,
-.highlight-row.incentivo .result-cell,
-.highlight-row.incentivo .input-cell {
-    background-color: var(--color-warning);
-    color: var(--color-text);
-}
 
-/* Linha de MKP Shopper (Amarelo Pastel) */
-.mkp-shopper {
-    background-color: var(--color-mkp-shopper) !important;
-    color: var(--color-text);
+/* 3. MKP Shopper (%) (Fundo AMARELO PASTEL, Fonte PRETA em TODA A LINHA) */
+.highlight-row.yellow-pastel-bg-black-font td {
+    background-color: var(--color-mkp-shopper-bg) !important; 
+    color: var(--color-text) !important;
 }
-
-/* Aplica o pastel/texto escuro no label e result-cell */
-.mkp-shopper .label,
-.mkp-shopper .input-cell,
-.mkp-shopper .result-cell {
-    background-color: var(--color-mkp-shopper);
+.highlight-row.yellow-pastel-bg-black-font .input-cell {
+    background-color: var(--color-mkp-shopper-bg) !important; 
+}
+.highlight-row.yellow-pastel-bg-black-font .input-cell input[type="text"] {
+    background-color: var(--color-white); 
     color: var(--color-text);
 }
 
@@ -248,22 +189,15 @@ body {
 /* Inputs */
 input[type="text"] {
     width: 100%;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    /* Ajuste o padding do input também, se necessário, para diminuir a altura total */
+    padding: var(--spacing-xs) var(--spacing-sm); 
     border: 1px solid var(--color-border);
     border-radius: 4px;
     font-size: var(--font-size-base);
     font-family: 'Courier New', monospace;
     background-color: var(--color-white);
     color: var(--color-text);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     text-align: right; 
-}
-
-/* Ajusta a cor de fundo dos inputs nas células coloridas para que fiquem brancos */
-.highlight-row.novo-base .input-cell input[type="text"],
-.highlight-row.incentivo .input-cell input[type="text"],
-.mkp-shopper .input-cell input[type="text"] {
-    background-color: var(--color-white);
 }
 
 /* Valores de resultado */
@@ -271,37 +205,25 @@ input[type="text"] {
     display: block;
     font-weight: 600;
     font-family: 'Courier New', monospace;
-    color: var(--color-text); /* Define a cor padrão do texto (PRETO) para o resultado */
 }
 
-/* Garante texto BRANCO apenas nos resultados das linhas de DESTAQUE VERDE */
-.highlight-row.novo-base .result-value,
-.highlight-row.valor-rebaixa .result-value {
-    color: var(--color-white) !important; 
-}
-/* As outras linhas (Azul Claro, Amarelo, Pastel) herdarão o preto de .result-value */
-
-
-/* Botões de ação - CENTRALIZADO */
+/* Botões */
 .action-buttons {
+    grid-column: 1 / -1; /* Ocupa as duas colunas */
     display: flex;
+    justify-content: center;
     gap: var(--spacing-md);
-    justify-content: center; /* CENTRALIZADO */
-    flex-wrap: wrap;
-    margin-top: var(--spacing-lg);
-    grid-column: 1 / -1; 
+    margin-top: var(--spacing-md);
 }
 
 .btn {
     padding: var(--spacing-sm) var(--spacing-lg);
-    border: none;
-    border-radius: 4px;
     font-size: var(--font-size-base);
     font-weight: 600;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-calculate {
@@ -311,223 +233,46 @@ input[type="text"] {
 
 .btn-calculate:hover {
     background-color: #388e3c;
-    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
 }
 
 .btn-reset {
-    background-color: var(--color-danger);
+    background-color: #f44336; /* Vermelho */
     color: var(--color-white);
 }
 
 .btn-reset:hover {
     background-color: #d32f2f;
-    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
 }
 
 .btn-print {
-    background-color: var(--color-primary);
+    background-color: #9e9e9e; /* Cinza */
     color: var(--color-white);
 }
 
 .btn-print:hover {
-    background-color: #1a4165;
-    box-shadow: 0 4px 8px rgba(30, 77, 123, 0.3);
+    background-color: #757575;
 }
 
-.btn:active {
-    transform: scale(0.98);
-}
-
-/* Footer - CENTRALIZADO */
+/* Footer */
 .footer {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    text-align: center; /* Centralização garantida */
-    padding: var(--spacing-md);
-    border-radius: 8px;
-    margin-top: var(--spacing-xl);
-    font-size: var(--font-size-sm);
-    grid-column: 1 / -1; 
-}
-
-/* Centraliza o texto do footer */
-.footer p {
     text-align: center;
-    margin: 0; /* Garante que não há margem extra que desalinhe */
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+    color: #666;
+    font-size: 0.875rem;
 }
 
-/* Responsividade e Impressão (Ajustadas para o layout de grid) */
-@media (max-width: 1024px) {
-    .main-content.grid-layout {
-        grid-template-columns: 1fr; /* Volta a ser uma coluna em telas menores */
-    }
-}
+/* Responsividade */
 @media (max-width: 768px) {
-    .container {
-        padding: var(--spacing-xs);
-    }
-
-    .header {
-        padding: var(--spacing-md);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .logo-section {
-        gap: var(--spacing-md);
-    }
-
-    .logo {
-        max-height: 35px; /* Ajuste para telas menores */
-    }
-    
-    .baston-logo {
-        max-height: 40px;
-    }
-
-    .header h1 {
-        font-size: var(--font-size-lg);
-    }
-
-    .calculator-table {
-        font-size: var(--font-size-sm);
-    }
-
-    .calculator-table th,
-    .calculator-table td {
-        padding: var(--spacing-sm);
-    }
-
-    .label {
-        width: 35%;
-    }
-
-    .input-cell {
-        width: 25%;
-    }
-
-    .result-cell {
-        width: 40%;
-    }
-
-    input[type="text"] {
-        padding: var(--spacing-xs);
-        font-size: var(--font-size-sm);
-    }
-
-    .action-buttons {
-        gap: var(--spacing-sm);
-    }
-
-    .btn {
-        padding: var(--spacing-sm) var(--spacing-md);
-        font-size: var(--font-size-sm);
-    }
-
-    .footer {
-        font-size: var(--font-size-sm);
-        padding: var(--spacing-md);
-    }
-}
-
-@media (max-width: 480px) {
-    :root {
-        font-size: 14px;
-    }
-
-    .container {
-        padding: var(--spacing-xs);
-    }
-
-    .header {
-        padding: var(--spacing-md);
-        margin-bottom: var(--spacing-md);
-        gap: var(--spacing-sm);
-    }
-
-    .logo-section {
-        gap: var(--spacing-sm);
-        flex-direction: column;
-    }
-
-    .logo, .baston-logo {
-        max-height: 30px; /* Mais ajuste para telas muito pequenas */
-    }
-
-    .header h1 {
-        font-size: var(--font-size-base);
-    }
-
-    .calculator-section {
-        border-radius: 4px;
-    }
-
-    .calculator-table {
-        font-size: 0.75rem;
-    }
-
-    .calculator-table th,
-    .calculator-table td {
-        padding: 0.5rem;
-    }
-
-    .label {
-        width: 40%;
-        font-weight: 600;
-    }
-
-    .input-cell,
-    .result-cell {
-        width: 30%;
-    }
-
-    input[type="text"] {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.75rem;
-    }
-
-    .result-value {
-        font-size: 0.75rem;
+    .main-content.grid-layout {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
     }
 
     .action-buttons {
         flex-direction: column;
-        gap: var(--spacing-sm);
     }
 
     .btn {
         width: 100%;
-        padding: var(--spacing-sm);
-        font-size: var(--font-size-sm);
-    }
-
-    .footer {
-        font-size: 0.75rem;
-        padding: var(--spacing-sm);
-    }
-}
-
-@media print {
-    body {
-        background-color: var(--color-white);
-    }
-
-    .container {
-        max-width: 100%;
-    }
-
-    .action-buttons,
-    .footer {
-        display: none;
-    }
-
-    .calculator-section {
-        page-break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid var(--color-border);
-    }
-
-    .header {
-        box-shadow: none;
-        border: 1px solid var(--color-border);
     }
 }
